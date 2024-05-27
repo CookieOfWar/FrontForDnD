@@ -1,0 +1,10 @@
+#CharacteristicsAndImage {
+  width: 1000px;
+  height: 1000px;
+}
+#portrait {
+  width: 50%;
+  height: 50%;
+  background-size: contain;
+  filter: drop-shadow(0 0 0.75rem black);
+}
