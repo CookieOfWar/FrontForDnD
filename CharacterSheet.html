@@ -8,31 +8,65 @@
   </head>
   <body>
     <div id="center">
-      <div id="generalInfo">
-        <select name="Class" id="characterClass"></select>
-				<div id="NameBack">
-					<input type="text" id="characterName" />
+      <div id="leftData">
+        <div id="generalInfo">
+          <select name="Class" id="characterClass"></select>
+          <input type="text" id="characterName" autocomplete="off" />
+          <select name="Race" id="characterRace"></select>
+        </div>
+
+        <div id="savingThrowBackground">
+					<div id="savingThrows">
+						<div id="STstr" class="ST">
+							<span id="STstrVal">+2</span>
+							<input type="checkbox" name="STstr" id="STstrCB">
+							<span class="STName">STR</span>
+						</div>
+						<div id="STdex" class="ST">
+							<span id="STdexVal">+4</span>
+							<input type="checkbox" name="STdex" id="STdexCB">
+							<span class="STName">DEX</span>
+						</div>
+						<div id="STcon" class="ST">
+							<span id="STconVal">+1</span>
+							<input type="checkbox" name="STcon" id="STconCB">
+							<span class="STName">CON</span>
+						</div>
+						<div id="STint" class="ST">
+							<span id="STintVal">0</span>
+							<input type="checkbox" name="STint" id="STintCB">
+							<span class="STName">INT</span>
+						</div>
+						<div id="STwis" class="ST">
+							<span id="STwisVal">-1</span>
+							<input type="checkbox" name="STwis" id="STwisCB">
+							<span class="STName">WIS</span>
+						</div>
+						<div id="STcha" class="ST">
+							<span id="STchaVal">+2</span>
+							<input type="checkbox" name="STcha" id="STchaCB">
+							<span class="STName">CHA</span>
+						</div>
 				</div>
-        <select name="Race" id="characterRace"></select>
       </div>
+		</div>
 
       <div id="CharacteristicsAndImage">
         <div id="portrait"></div>
-        <div id="strength"></div>
-        <div id="dexterity"></div>
-        <div id="constitution"></div>
-        <div id="intelligence"></div>
-        <div id="wisdom"></div>
-        <div id="charisma"></div>
-        <div id="ACShield"><span id="AC"></span></div>
+        <div id="strength"><span>Сила</span></div>
+        <div id="dexterity"><span>Ловкость</span></div>
+        <div id="constitution"><span>Выносливость</span></div>
+        <div id="intelligence"><span>Интеллект</span></div>
+        <div id="wisdom"><span>Мудрость</span></div>
+        <div id="charisma"><span>Харизма</span></div>
+        <div id="ACShield"><span id="AC">+4</span></div>
         <div id="initiative"><span id="Initiative"></span></div>
         <div id="speed"><span id="Speed"></span></div>
         <div id="profBonus">
-					<span id="PB"></span>
+          <span id="PB"></span>
           <span id="profBonusName">БМ</span>
         </div>
       </div>
-    </div>
     <script src="character.js"></script>
   </body>
 </html>

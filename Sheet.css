@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "Cattedrale";
+  src: url("./fonts/Cattedrale.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   overflow: hidden;
 
@@ -9,6 +16,11 @@ body {
   background-size: 250%;
 
   font-family: cursive;
+}
+
+#generalInfo {
+  display: flex;
+  align-items: center;
 }
 
 #CharacteristicsAndImage {
@@ -50,8 +62,7 @@ body {
 #profBonus {
   aspect-ratio: 1/1;
   position: absolute;
-  width: 7vw;
-  border-radius: 50%;
+  width: 8vw;
 }
 
 #strength {
@@ -59,7 +70,7 @@ body {
     rotate(calc(var(--originDegree) * -1));
   background: no-repeat;
   background-size: contain;
-  background-image: url("https://dnd-data-base.vercel.app/portrait/human-barbarian-male");
+  background-image: url("./images/characteristicFrame.png");
 }
 #dexterity {
   transform: rotate(calc(var(--originDegree) + var(--deltaDegree)))
@@ -67,15 +78,16 @@ body {
     rotate(calc((var(--originDegree) + var(--deltaDegree)) * -1));
   background: no-repeat;
   background-size: contain;
-  background-image: url("https://dnd-data-base.vercel.app/portrait/human-rogue-male");
+  background-image: url("./images/characteristicFrame.png");
 }
+
 #constitution {
   transform: rotate(calc(var(--originDegree) + 2 * var(--deltaDegree)))
     translate(var(--radius))
     rotate(calc((var(--originDegree) + 2 * var(--deltaDegree)) * -1));
   background: no-repeat;
   background-size: contain;
-  background-image: url("https://dnd-data-base.vercel.app/portrait/human-paladin-male");
+  background-image: url("./images/characteristicFrame.png");
 }
 #intelligence {
   transform: rotate(calc(var(--originDegree) + 3 * var(--deltaDegree)))
@@ -83,7 +95,7 @@ body {
     rotate(calc((var(--originDegree) + 3 * var(--deltaDegree)) * -1));
   background: no-repeat;
   background-size: contain;
-  background-image: url("https://dnd-data-base.vercel.app/portrait/human-cleric-male");
+  background-image: url("./images/characteristicFrame.png");
 }
 #wisdom {
   transform: rotate(calc(var(--originDegree) + 4 * var(--deltaDegree)))
@@ -91,7 +103,7 @@ body {
     rotate(calc((var(--originDegree) + 4 * var(--deltaDegree)) * -1));
   background: no-repeat;
   background-size: contain;
-  background-image: url("https://dnd-data-base.vercel.app/portrait/human-sorcerer-male");
+  background-image: url("./images/characteristicFrame.png");
 }
 #charisma {
   transform: rotate(calc(var(--originDegree) + 5 * var(--deltaDegree)))
@@ -99,7 +111,32 @@ body {
     rotate(calc((var(--originDegree) + 5 * var(--deltaDegree)) * -1));
   background: no-repeat;
   background-size: contain;
-  background-image: url("https://dnd-data-base.vercel.app/portrait/human-bard-male");
+  background-image: url("./images/characteristicFrame.png");
+}
+
+#strength span,
+#dexterity span,
+#constitution span,
+#intelligence span,
+#wisdom span,
+#charisma span {
+  background: linear-gradient(to bottom, #cfc09f 27%, #ffecb3 40%, #b37f18 78%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #fff;
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 78%;
+  font-size: 0.8vw;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+#constitution span {
+  transform: scaleX(0.75);
 }
 
 #ACShield {
@@ -108,6 +145,21 @@ body {
   background: no-repeat;
   background-size: contain;
   background-image: url("./images/shieldAC.png");
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#AC {
+  position: absolute;
+  font-size: 4vw;
+  text-align: center;
+
+  aspect-ratio: 1/1;
+  width: 5vw;
+
+  font-family: Cattedrale;
 }
 
 #initiative {
@@ -147,12 +199,7 @@ body {
   justify-content: center;
 }
 #profBonusName {
-  font-size: 1vw;
-  margin-top: 73%;
-  max-width: 50%;
-  transform: scaleX(1.5);
-
-  background: linear-gradient(to bottom, #cfc09f 27%, #ffecb3 40%, #3a2c0f 78%);
+  background: linear-gradient(to bottom, #cfc09f 27%, #ffecb3 40%, #b37f18 78%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -160,20 +207,31 @@ body {
   display: block;
   text-align: center;
   font-weight: bold;
-  /*text-shadow: 1px 1px 20px white;*/
-}
+  margin-top: 73%;
+  font-size: 1vw;
+  transform: scaleX(1.5);
 
-#NameBack {
+  position: absolute;
+  left: 0;
+  right: 0;
 }
 
 #characterName {
-  font-size: 1.7vw;
+  font-size: 2vw;
   font-family: cursive;
   font-weight: bold;
   background-color: transparent;
   outline: none;
   text-align: center;
-  border: 0;
+  /* margin-top: 5vw; */
+  /* border: 0; */
+  border-width: 1px;
+  border-color: yellow;
+  /* border-image: url("./images/nameFrame.png") 30 fill; */
+  /* background-image: url("./images/nameFrame.png");
+  background-size: 100% 110%;
+  background-position: center;
+  background-repeat: no-repeat; */
 }
 
 #characterClass {
@@ -185,6 +243,7 @@ body {
   appearance: none;
   text-align: center;
   background-size: contain;
+  background-repeat: no-repeat;
   background-color: transparent;
   outline: none;
   color: transparent;
@@ -210,4 +269,73 @@ body {
 }
 #characterRace option {
   background-color: transparent;
+}
+
+#savingThrowBackground {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+  background-image: url("./images/scroll.png");
+
+  aspect-ratio: 9/2;
+  width: 27vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1vw;
+}
+
+#STstrVal,
+#STdexVal,
+#STconVal,
+#STintVal,
+#STwisVal,
+#STchaVal {
+  margin-top: 0.7vw;
+  font-size: 1vw;
+  font-weight: bold;
+}
+
+#STstrCB,
+#STdexCB,
+#STconCB,
+#STintCB,
+#STwisCB,
+#STchaCB {
+  /* aspect-ratio: 1/1; */
+  width: 0.7vw;
+
+  margin-left: 1.15vw;
+}
+
+.ST {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-size: 100% 60%;
+  background-color: transparent;
+  outline: none;
+  /* color: transparent; */
+  border: 0;
+  background-image: url("./images/STFrame.png");
+
+  aspect-ratio: 2/3;
+  width: 3vw;
+}
+.STName {
+  font-size: 1vw;
+  font-weight: bold;
+}
+
+#savingThrows {
+  aspect-ratio: 9/2;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 22vw;
 }
