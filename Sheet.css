@@ -1,10 +1,213 @@
+body {
+  overflow: hidden;
+
+  --radius: 18vw;
+  --originDegree: -60deg;
+  --deltaDegree: -30deg;
+
+  background-image: url("./images/pergament.jpg");
+  background-size: 250%;
+
+  font-family: cursive;
+}
+
 #CharacteristicsAndImage {
-  width: 1000px;
-  height: 1000px;
+  aspect-ratio: 1/1;
+  width: 45vw;
+  justify-self: right;
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: -7vw;
 }
 #portrait {
-  width: 50%;
-  height: 50%;
+  aspect-ratio: 1/1;
+  width: 35vw;
+  background: no-repeat;
   background-size: contain;
-  filter: drop-shadow(0 0 0.75rem black);
+  filter: drop-shadow(0 0 3rem black);
+  justify-self: flex-end;
+  align-items: center;
+  position: absolute;
+  border-radius: 50%;
+}
+
+#center {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#strength,
+#dexterity,
+#constitution,
+#intelligence,
+#wisdom,
+#charisma,
+#ACShield,
+#initiative,
+#speed,
+#profBonus {
+  aspect-ratio: 1/1;
+  position: absolute;
+  width: 7vw;
+  border-radius: 50%;
+}
+
+#strength {
+  transform: rotate(var(--originDegree)) translate(var(--radius))
+    rotate(calc(var(--originDegree) * -1));
+  background: no-repeat;
+  background-size: contain;
+  background-image: url("https://dnd-data-base.vercel.app/portrait/human-barbarian-male");
+}
+#dexterity {
+  transform: rotate(calc(var(--originDegree) + var(--deltaDegree)))
+    translate(var(--radius))
+    rotate(calc((var(--originDegree) + var(--deltaDegree)) * -1));
+  background: no-repeat;
+  background-size: contain;
+  background-image: url("https://dnd-data-base.vercel.app/portrait/human-rogue-male");
+}
+#constitution {
+  transform: rotate(calc(var(--originDegree) + 2 * var(--deltaDegree)))
+    translate(var(--radius))
+    rotate(calc((var(--originDegree) + 2 * var(--deltaDegree)) * -1));
+  background: no-repeat;
+  background-size: contain;
+  background-image: url("https://dnd-data-base.vercel.app/portrait/human-paladin-male");
+}
+#intelligence {
+  transform: rotate(calc(var(--originDegree) + 3 * var(--deltaDegree)))
+    translate(var(--radius))
+    rotate(calc((var(--originDegree) + 3 * var(--deltaDegree)) * -1));
+  background: no-repeat;
+  background-size: contain;
+  background-image: url("https://dnd-data-base.vercel.app/portrait/human-cleric-male");
+}
+#wisdom {
+  transform: rotate(calc(var(--originDegree) + 4 * var(--deltaDegree)))
+    translate(var(--radius))
+    rotate(calc((var(--originDegree) + 4 * var(--deltaDegree)) * -1));
+  background: no-repeat;
+  background-size: contain;
+  background-image: url("https://dnd-data-base.vercel.app/portrait/human-sorcerer-male");
+}
+#charisma {
+  transform: rotate(calc(var(--originDegree) + 5 * var(--deltaDegree)))
+    translate(var(--radius))
+    rotate(calc((var(--originDegree) + 5 * var(--deltaDegree)) * -1));
+  background: no-repeat;
+  background-size: contain;
+  background-image: url("https://dnd-data-base.vercel.app/portrait/human-bard-male");
+}
+
+#ACShield {
+  transform: rotate(90deg) translate(var(--radius)) rotate(-90deg);
+  width: 12vw;
+  background: no-repeat;
+  background-size: contain;
+  background-image: url("./images/shieldAC.png");
+}
+
+#initiative {
+  transform: rotate(120deg) translate(calc(var(--radius) + 1vw)) rotate(-120deg);
+  aspect-ratio: 1/1;
+  width: 8vw;
+  background: no-repeat;
+  background-size: contain;
+  /*border: red solid 0.1vw;*/
+  border-radius: 0;
+  background-color: transparent;
+  background-image: url("./images/initiative.png");
+}
+
+#speed {
+  transform: rotate(60deg) translate(calc(var(--radius) + 1vw)) rotate(-60deg);
+  aspect-ratio: 1/1;
+  width: 8vw;
+  background: no-repeat;
+  background-size: contain;
+  /*border: blue solid 0.1vw;*/
+  border-radius: 0;
+  background-color: transparent;
+  background-image: url("./images/speed.png");
+}
+#profBonus {
+  transform: rotate(-135deg) translate(calc(var(--radius) + 7vw)) rotate(135deg);
+  width: 8vw;
+  background: no-repeat;
+  background-size: contain;
+  border-radius: 0;
+  /*border: darkblue solid 0.1vw;*/
+  background-color: transparent;
+  background-image: url("./images/profBonus.png");
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+#profBonusName {
+  font-size: 1vw;
+  margin-top: 73%;
+  max-width: 50%;
+  transform: scaleX(1.5);
+
+  background: linear-gradient(to bottom, #cfc09f 27%, #ffecb3 40%, #3a2c0f 78%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #fff;
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  /*text-shadow: 1px 1px 20px white;*/
+}
+
+#NameBack {
+}
+
+#characterName {
+  font-size: 1.7vw;
+  font-family: cursive;
+  font-weight: bold;
+  background-color: transparent;
+  outline: none;
+  text-align: center;
+  border: 0;
+}
+
+#characterClass {
+  cursor: pointer;
+  aspect-ratio: 1/1;
+  width: 6vw;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align: center;
+  background-size: contain;
+  background-color: transparent;
+  outline: none;
+  color: transparent;
+  border: 0;
+}
+#characterClass option {
+  color: black;
+  font-size: 1vw;
+  font-family: cursive;
+  font-weight: bold;
+}
+
+#characterRace {
+  font-size: 1.7vw;
+  text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  font-family: cursive;
+}
+#characterRace option {
+  background-color: transparent;
 }

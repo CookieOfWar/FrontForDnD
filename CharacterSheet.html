@@ -7,16 +7,32 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="generalInfo">
-      <input type="text" id="characterName" />
-      <select name="Class" id="characterClass"></select>
-      <select name="Race" id="characterRace"></select>
-    </div>
+    <div id="center">
+      <div id="generalInfo">
+        <select name="Class" id="characterClass"></select>
+				<div id="NameBack">
+					<input type="text" id="characterName" />
+				</div>
+        <select name="Race" id="characterRace"></select>
+      </div>
 
-    <div id="CharacteristicsAndImage">
-      <div id="portrait"></div>
+      <div id="CharacteristicsAndImage">
+        <div id="portrait"></div>
+        <div id="strength"></div>
+        <div id="dexterity"></div>
+        <div id="constitution"></div>
+        <div id="intelligence"></div>
+        <div id="wisdom"></div>
+        <div id="charisma"></div>
+        <div id="ACShield"><span id="AC"></span></div>
+        <div id="initiative"><span id="Initiative"></span></div>
+        <div id="speed"><span id="Speed"></span></div>
+        <div id="profBonus">
+					<span id="PB"></span>
+          <span id="profBonusName">БМ</span>
+        </div>
+      </div>
     </div>
-
     <script src="character.js"></script>
   </body>
 </html>
