@@ -50,12 +50,12 @@ body {
   flex-direction: row;
   justify-content: space-between;
 }
-#strength,
-#dexterity,
-#constitution,
-#intelligence,
-#wisdom,
-#charisma,
+#strengthDiv,
+#dexterityDiv,
+#constitutionDiv,
+#intelligenceDiv,
+#wisdomDiv,
+#charismaDiv,
 #ACShield,
 #initiative,
 #speed,
@@ -65,14 +65,14 @@ body {
   width: 8vw;
 }
 
-#strength {
+#strengthDiv {
   transform: rotate(var(--originDegree)) translate(var(--radius))
     rotate(calc(var(--originDegree) * -1));
   background: no-repeat;
   background-size: contain;
   background-image: url("./images/characteristicFrame.png");
 }
-#dexterity {
+#dexterityDiv {
   transform: rotate(calc(var(--originDegree) + var(--deltaDegree)))
     translate(var(--radius))
     rotate(calc((var(--originDegree) + var(--deltaDegree)) * -1));
@@ -81,7 +81,7 @@ body {
   background-image: url("./images/characteristicFrame.png");
 }
 
-#constitution {
+#constitutionDiv {
   transform: rotate(calc(var(--originDegree) + 2 * var(--deltaDegree)))
     translate(var(--radius))
     rotate(calc((var(--originDegree) + 2 * var(--deltaDegree)) * -1));
@@ -89,7 +89,7 @@ body {
   background-size: contain;
   background-image: url("./images/characteristicFrame.png");
 }
-#intelligence {
+#intelligenceDiv {
   transform: rotate(calc(var(--originDegree) + 3 * var(--deltaDegree)))
     translate(var(--radius))
     rotate(calc((var(--originDegree) + 3 * var(--deltaDegree)) * -1));
@@ -97,7 +97,7 @@ body {
   background-size: contain;
   background-image: url("./images/characteristicFrame.png");
 }
-#wisdom {
+#wisdomDiv {
   transform: rotate(calc(var(--originDegree) + 4 * var(--deltaDegree)))
     translate(var(--radius))
     rotate(calc((var(--originDegree) + 4 * var(--deltaDegree)) * -1));
@@ -105,7 +105,7 @@ body {
   background-size: contain;
   background-image: url("./images/characteristicFrame.png");
 }
-#charisma {
+#charismaDiv {
   transform: rotate(calc(var(--originDegree) + 5 * var(--deltaDegree)))
     translate(var(--radius))
     rotate(calc((var(--originDegree) + 5 * var(--deltaDegree)) * -1));
@@ -114,12 +114,7 @@ body {
   background-image: url("./images/characteristicFrame.png");
 }
 
-#strength span,
-#dexterity span,
-#constitution span,
-#intelligence span,
-#wisdom span,
-#charisma span {
+.characteristicName {
   background: linear-gradient(to bottom, #cfc09f 27%, #ffecb3 40%, #b37f18 78%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -135,8 +130,48 @@ body {
   left: 0;
   right: 0;
 }
-#constitution span {
+#constitutionDiv span[class="characteristicName"] {
   transform: scaleX(0.75);
+}
+
+#strVal,
+#dexVal,
+#conVal,
+#intVal,
+#wisVal,
+#chaVal {
+  aspect-ratio: 1/1;
+  width: 3.5vw;
+
+  font-size: 3vw;
+  text-align: center;
+  font-family: Cattedrale;
+
+  position: absolute;
+  margin-top: 0;
+  display: block;
+  content: "";
+  top: 1.6vw;
+  left: 2.25vw;
+}
+
+#strMod,
+#dexMod,
+#conMod,
+#intMod,
+#wisMod,
+#chaMod {
+  aspect-ratio: 1/1;
+  width: 1vw;
+  position: absolute;
+  font-size: 1vw;
+  font-weight: bold;
+  text-align: center;
+  font-family: Cattedrale;
+  display: block;
+  content: "";
+  top: 0.7vw;
+  left: 5.85vw;
 }
 
 #ACShield {
@@ -215,6 +250,21 @@ body {
   left: 0;
   right: 0;
 }
+#PB {
+  aspect-ratio: 1/1;
+  width: 3.5vw;
+
+  font-size: 3vw;
+  text-align: center;
+  font-family: Cattedrale;
+
+  position: absolute;
+  margin-top: 0;
+  display: block;
+  content: "";
+  top: 1.6vw;
+  left: 2.25vw;
+}
 
 #characterName {
   font-size: 2vw;
@@ -223,16 +273,10 @@ body {
   background-color: transparent;
   outline: none;
   text-align: center;
-  /* margin-top: 5vw; */
-  /* border: 0; */
+
   border-width: 1px;
   border-color: yellow;
-	background-color: rgba(155, 137, 44, 0.526);
-  /*border-image: url("./images/nameFrame.png") 30 fill;*/
-  /* background-image: url("./images/nameFrame.png");
-  background-size: 100% 110%;
-  background-position: center;
-  background-repeat: no-repeat; */
+  background-color: rgba(155, 137, 44, 0.526);
 }
 
 #characterClass {
@@ -272,56 +316,42 @@ body {
   background-color: transparent;
 }
 
-#savingThrowBackground {
+#skillsBackground {
+  aspect-ratio: 1/2;
+  width: 20vw;
+
+  background-color: transparent;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  background-color: transparent;
-  outline: none;
-  border: 0;
-  background-image: url("./images/scroll.png");
-
-  aspect-ratio: 9/2;
-  width: 26vw;
-
+  background-image: url("./images/skillsFrame.png");
+}
+#skills {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 1vw;
+  flex-direction: column;
+  width: 13vw;
+
+  position: relative;
+  left: 2.5vw;
+  top: 2vw;
 }
 
-#STstrVal,
-#STdexVal,
-#STconVal,
-#STintVal,
-#STwisVal,
-#STchaVal {
-  margin-top: 0.4vw;
-  font-size: 1vw;
+#skills h2 {
+  font-size: 0.8vw;
   font-weight: bold;
-  font-family: Cattedrale;
+  text-align: center;
+
+  margin-bottom: 0;
 }
 
-#STchaCB,
-#STstrCB,
-#STdexCB,
-#STconCB,
-#STintCB,
-#STwisCB {
+#skills input {
   display: none;
 }
-#STstrCB + label,
-#STdexCB + label,
-#STconCB + label,
-#STintCB + label,
-#STwisCB + label,
-#STchaCB + label {
+#skills label {
   aspect-ratio: 1/1;
   width: 1vw;
   margin-left: 1vw;
-
   display: inline-block;
   content: "";
-  /*background: red;*/
   background-image: url("./images/roundFrame.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -329,42 +359,31 @@ body {
   outline: none;
   border: 0;
 }
-#STchaCB:checked + label,
-#STstrCB:checked + label,
-#STdexCB:checked + label,
-#STconCB:checked + label,
-#STintCB:checked + label,
-#STwisCB:checked + label {
-  background-image: url("./images/selectedRoundFrame.png");
+#skills input:checked + label {
+  background-image: url("./images/selectedRoundFrameRed.png");
 }
 
-.ST {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  background-repeat: no-repeat;
-  background-size: 100% 60%;
-  background-color: transparent;
-  outline: none;
-  /* color: transparent; */
-  border: 0;
-  background-image: url("./images/STFrame.png");
-
-  aspect-ratio: 2/3;
-  width: 3vw;
-}
-
-.STName {
-  cursor: default;
-  font-size: 1vw;
-  font-weight: bold;
-}
-
-#savingThrows {
-  aspect-ratio: 9/2;
+.skill {
+  /* aspect-ratio: 10/1; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 22vw;
+  width: 100%;
+  height: 1vw;
+  align-items: center;
+}
+.skillName {
+  font-size: 0.8vw;
+  font-weight: bold;
+}
+.skillVals {
+  width: 2vw;
+
+  text-align: center;
+  font-family: Cattedrale;
+  font-size: 0.8vw;
+  font-weight: bold;
+  background-image: url("./images/skillVal.png");
+  background-size: 2vw 1.2vw;
+  background-repeat: no-repeat;
 }
