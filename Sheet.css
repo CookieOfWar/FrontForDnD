@@ -227,7 +227,8 @@ body {
   /* border: 0; */
   border-width: 1px;
   border-color: yellow;
-  /* border-image: url("./images/nameFrame.png") 30 fill; */
+	background-color: rgba(155, 137, 44, 0.526);
+  /*border-image: url("./images/nameFrame.png") 30 fill;*/
   /* background-image: url("./images/nameFrame.png");
   background-size: 100% 110%;
   background-position: center;
@@ -280,7 +281,7 @@ body {
   background-image: url("./images/scroll.png");
 
   aspect-ratio: 9/2;
-  width: 27vw;
+  width: 26vw;
 
   display: flex;
   justify-content: center;
@@ -294,21 +295,47 @@ body {
 #STintVal,
 #STwisVal,
 #STchaVal {
-  margin-top: 0.7vw;
+  margin-top: 0.4vw;
   font-size: 1vw;
   font-weight: bold;
+  font-family: Cattedrale;
 }
 
+#STchaCB,
 #STstrCB,
 #STdexCB,
 #STconCB,
 #STintCB,
-#STwisCB,
-#STchaCB {
-  /* aspect-ratio: 1/1; */
-  width: 0.7vw;
+#STwisCB {
+  display: none;
+}
+#STstrCB + label,
+#STdexCB + label,
+#STconCB + label,
+#STintCB + label,
+#STwisCB + label,
+#STchaCB + label {
+  aspect-ratio: 1/1;
+  width: 1vw;
+  margin-left: 1vw;
 
-  margin-left: 1.15vw;
+  display: inline-block;
+  content: "";
+  /*background: red;*/
+  background-image: url("./images/roundFrame.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+}
+#STchaCB:checked + label,
+#STstrCB:checked + label,
+#STdexCB:checked + label,
+#STconCB:checked + label,
+#STintCB:checked + label,
+#STwisCB:checked + label {
+  background-image: url("./images/selectedRoundFrame.png");
 }
 
 .ST {
@@ -327,7 +354,9 @@ body {
   aspect-ratio: 2/3;
   width: 3vw;
 }
+
 .STName {
+  cursor: default;
   font-size: 1vw;
   font-weight: bold;
 }
