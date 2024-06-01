@@ -23,6 +23,15 @@ body {
   align-items: center;
 }
 
+#sexChanger{
+	margin-left: 1vw;
+	font-size: 2vw;
+	background-color: transparent;
+	border: 0;
+	outline: none;
+	cursor: pointer;
+}
+
 #CharacteristicsAndImage {
   aspect-ratio: 1/1;
   width: 45vw;
@@ -141,9 +150,9 @@ body {
 #wisVal,
 #chaVal {
   aspect-ratio: 1/1;
-  width: 3.5vw;
+  width: 4vw;
 
-  font-size: 3vw;
+  font-size: 2.5vw;
   text-align: center;
   font-family: Cattedrale;
 
@@ -153,6 +162,10 @@ body {
   content: "";
   top: 1.6vw;
   left: 2.25vw;
+
+	background-color: transparent;
+	border: 0;
+	outline: 0;
 }
 
 #strMod,
@@ -264,6 +277,8 @@ body {
   content: "";
   top: 1.6vw;
   left: 2.25vw;
+
+	cursor: default;
 }
 
 #characterName {
@@ -325,6 +340,24 @@ body {
   background-size: 100% 100%;
   background-image: url("./images/skillsFrame.png");
 }
+#skillsBackground h1{
+	background: linear-gradient(to bottom, #cfc09f 27%, #ffecb3 40%, #b37f18 78%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #fff;
+  display: block;
+  text-align: center;
+  font-weight: bold;
+
+	width: 5vw;
+
+	position: absolute;
+	margin-left: 7.5vw;
+	margin-top: 0.3vw;
+  font-size: 1vw;
+}
+
 #skills {
   display: flex;
   flex-direction: column;
@@ -386,4 +419,6 @@ body {
   background-image: url("./images/skillVal.png");
   background-size: 2vw 1.2vw;
   background-repeat: no-repeat;
+
+	cursor: default;
 }

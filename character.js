@@ -16,6 +16,8 @@ const WIS = document.getElementById("wisVal");
 const CHA = document.getElementById("chaVal");
 
 var Level = 1;
+const sexChanger = document.getElementById("sexChanger");
+var Sex = "male";
 
 const skillList = [...document.getElementsByClassName("skillVals")];
 /*[
@@ -109,64 +111,93 @@ function configureElements(classes, races) {
     characterRace.innerHTML += `<option value="${races["RacesEn"][i]}">${races["RacesRu"][i]}</option>`;
   }
 
+  characterRace.value = "Human";
+  characterRace.dispatchEvent(new Event("change"));
+
   characterClass.value = "Fighter";
   characterClass.dispatchEvent(new Event("change"));
 
-  characterRace.value = "Human";
-
-  updateSkillVals();
+  [STR, DEX, CON, INT, WIS, CHA].forEach((item) => {
+    item.value = 8;
+  });
   updatePB();
-  updateCharacteristicNames();
+  updateCharacteristicMods();
+  updateSkillVals();
 }
 
+characterRace.addEventListener("change", (event) => {
+  changePortrait();
+});
 characterClass.addEventListener("change", (event) => {
-  portrait.style.backgroundImage = `url("https://dnd-data-base.vercel.app/portrait/human-${event.target.value.toLowerCase()}-male")`;
+  changePortrait();
   characterClass.style.backgroundImage = `url("./images/DicesClasses/${event.target.value.toLowerCase()}.png")`;
-  console.log("changed");
+});
+sexChanger.addEventListener("click", (event) => {
+  Sex = Sex == "male" ? "female" : "male";
+  sexChanger.innerHTML = Sex == "male" ? "М" : "Ж";
+  changePortrait();
 });
 
+function changePortrait() {
+  portrait.style.backgroundImage = `url("https://dnd-data-base.vercel.app/portrait/${characterRace.value.toLowerCase()}-${characterClass.value.toLowerCase()}-${Sex}")`;
+}
+
 skillCBList.forEach((item) => addEventListener("change", updateSkillVals));
+[STR, DEX, CON, INT, WIS, CHA].forEach((item) =>
+  addEventListener("input", (e) => {
+    if (e.target.value > 30) {
+      e.target.value = 30;
+    }
+    if (e.target.value < 1) {
+      e.target.value = 1;
+    }
+    console.log(e);
+    updateCharacteristicMods();
+    updateSkillVals();
+  })
+);
 
 function updatePB() {
   PB.innerHTML = "+" + getPB(Level).toString();
 }
 
-function updateCharacteristicNames() {
+function updateCharacteristicMods() {
   document.getElementById("strMod").innerHTML =
-    getValueModifier(parseInt(STR.innerHTML)) > 0
-      ? `+${getValueModifier(parseInt(STR.innerHTML))}`
-      : `${getValueModifier(parseInt(STR.innerHTML))}`;
+    getValueModifier(+STR.value) > 0
+      ? `+${getValueModifier(+STR.value)}`
+      : `${getValueModifier(+STR.value)}`;
+  console.log(getValueModifier(+STR.value));
 
   document.getElementById("dexMod").innerHTML =
-    getValueModifier(parseInt(DEX.innerHTML)) > 0
-      ? `+${getValueModifier(parseInt(DEX.innerHTML))}`
-      : `${getValueModifier(parseInt(DEX.innerHTML))}`;
+    getValueModifier(+DEX.value) > 0
+      ? `+${getValueModifier(+DEX.value)}`
+      : `${getValueModifier(+DEX.value)}`;
 
   document.getElementById("conMod").innerHTML =
-    getValueModifier(parseInt(CON.innerHTML)) > 0
-      ? `+${getValueModifier(parseInt(CON.innerHTML))}`
-      : `${getValueModifier(parseInt(CON.innerHTML))}`;
+    getValueModifier(+CON.value) > 0
+      ? `+${getValueModifier(+CON.value)}`
+      : `${getValueModifier(+CON.value)}`;
 
   document.getElementById("intMod").innerHTML =
-    getValueModifier(parseInt(INT.innerHTML)) > 0
-      ? `+${getValueModifier(parseInt(INT.innerHTML))}`
-      : `${getValueModifier(parseInt(INT.innerHTML))}`;
+    getValueModifier(+INT.value) > 0
+      ? `+${getValueModifier(+INT.value)}`
+      : `${getValueModifier(+INT.value)}`;
 
   document.getElementById("wisMod").innerHTML =
-    getValueModifier(parseInt(WIS.innerHTML)) > 0
-      ? `+${getValueModifier(parseInt(WIS.innerHTML))}`
-      : `${getValueModifier(parseInt(WIS.innerHTML))}`;
+    getValueModifier(+WIS.value) > 0
+      ? `+${getValueModifier(+WIS.value)}`
+      : `${getValueModifier(+WIS.value)}`;
 
   document.getElementById("chaMod").innerHTML =
-    getValueModifier(parseInt(CHA.innerHTML)) > 0
-      ? `+${getValueModifier(parseInt(CHA.innerHTML))}`
-      : `${getValueModifier(parseInt(CHA.innerHTML))}`;
+    getValueModifier(+CHA.value) > 0
+      ? `+${getValueModifier(+CHA.value)}`
+      : `${getValueModifier(+CHA.value)}`;
 }
 
 function updateSkillVals() {
   for (let i = 0; i < skillList.length; i++) {
     let val =
-      getValueModifier(parseInt(getSkillCharacteristic(i).innerHTML)) +
+      getValueModifier(parseInt(getSkillCharacteristic(i).value)) +
       (skillCBList[i].checked ? getPB(Level) : 0);
     skillList[i].innerHTML = val > 0 ? `+${val}` : `${val}`;
   }
@@ -187,3 +218,5 @@ function getSkillCharacteristic(numberInList) {
   if ([13, 14, 15, 16, 17, 18].indexOf(numberInList) !== -1) return WIS;
   if ([19, 20, 21, 22, 23].indexOf(numberInList) !== -1) return CHA;
 }
+
+
