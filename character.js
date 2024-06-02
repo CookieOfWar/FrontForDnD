@@ -15,6 +15,8 @@ const INT = document.getElementById("intVal");
 const WIS = document.getElementById("wisVal");
 const CHA = document.getElementById("chaVal");
 
+console.log(STR, DEX, CON, INT, WIS, CHA);
+
 var Level = 1;
 const sexChanger = document.getElementById("sexChanger");
 var Sex = "male";
@@ -73,7 +75,7 @@ const skillCBList = [...document.getElementsByClassName("skillCB")];
 	persuasionCB
 ]*/
 
-var classes, races, spells;
+var classes, races, racesDetails, spells;
 
 async function createFetch(api, options) {
   return fetch(api, options).then((res) => {
@@ -84,7 +86,8 @@ async function createFetch(api, options) {
 GetDataBase().then((data) => {
   classes = data[0];
   races = data[1];
-  spells = data[2];
+  racesDetails = data[2];
+  spells = data[3];
   configureElements(data[0], data[1]);
 });
 
@@ -96,6 +99,7 @@ async function GetDataBase() {
     createFetch("https://dnd-data-base.vercel.app/races", {
       method: "GET",
     }),
+    createFetch("https://dnd-data-base.vercel.app/race", { method: "GET" }),
     createFetch("https://dnd-data-base.vercel.app/spells", {
       method: "GET",
     }),
@@ -123,14 +127,22 @@ function configureElements(classes, races) {
   updatePB();
   updateCharacteristicMods();
   updateSkillVals();
+  document.getElementById("Speed").innerHTML =
+    racesDetails[`${characterRace.value.toLowerCase()}`][0]["speed"];
+
+  document.getElementById("level").value = 1;
 }
 
 characterRace.addEventListener("change", (event) => {
   changePortrait();
+  document.getElementById("Speed").innerHTML =
+    racesDetails[`${characterRace.value.toLowerCase()}`][0]["speed"];
 });
 characterClass.addEventListener("change", (event) => {
   changePortrait();
   characterClass.style.backgroundImage = `url("./images/DicesClasses/${event.target.value.toLowerCase()}.png")`;
+  document.getElementById("Speed").innerHTML =
+    racesDetails[`${characterRace.value.toLowerCase()}`][0]["speed"];
 });
 sexChanger.addEventListener("click", (event) => {
   Sex = Sex == "male" ? "female" : "male";
@@ -143,15 +155,27 @@ function changePortrait() {
 }
 
 skillCBList.forEach((item) => addEventListener("change", updateSkillVals));
+
+document.getElementById("level").addEventListener("input", (e) => {
+  if (e.target.value > 20) {
+    e.target.value = 20;
+  }
+  if (e.target.value < 1) {
+    e.target.value = 1;
+  }
+  Level = e.target.value;
+  updatePB();
+  updateSkillVals();
+});
+
 [STR, DEX, CON, INT, WIS, CHA].forEach((item) =>
-  addEventListener("input", (e) => {
+  item.addEventListener("input", (e) => {
     if (e.target.value > 30) {
       e.target.value = 30;
     }
     if (e.target.value < 1) {
       e.target.value = 1;
     }
-    console.log(e);
     updateCharacteristicMods();
     updateSkillVals();
   })
@@ -168,7 +192,9 @@ function updateCharacteristicMods() {
       : `${getValueModifier(+STR.value)}`;
   console.log(getValueModifier(+STR.value));
 
-  document.getElementById("dexMod").innerHTML =
+  document.getElementById("Initiative").innerHTML = document.getElementById(
+    "dexMod"
+  ).innerHTML =
     getValueModifier(+DEX.value) > 0
       ? `+${getValueModifier(+DEX.value)}`
       : `${getValueModifier(+DEX.value)}`;
@@ -218,5 +244,3 @@ function getSkillCharacteristic(numberInList) {
   if ([13, 14, 15, 16, 17, 18].indexOf(numberInList) !== -1) return WIS;
   if ([19, 20, 21, 22, 23].indexOf(numberInList) !== -1) return CHA;
 }
-
-

@@ -13,11 +13,11 @@
           <select name="Class" id="characterClass"></select>
           <input type="text" id="characterName" autocomplete="off" />
           <select name="Race" id="characterRace"></select>
-					<button id="sexChanger">М</button>
+          <button id="sexChanger">М</button>
         </div>
 
         <div id="skillsBackground">
-					<h1>Навыки</h1>
+          <h1>Навыки</h1>
           <div id="skills">
             <div id="strSkills">
               <h2>____сил____</h2>
@@ -310,54 +310,104 @@
         </div>
       </div>
 
-      <div id="CharacteristicsAndImage">
-        <div id="portrait"></div>
-
-        <div id="strengthDiv">
-          <input type="number" min="1" max="30" step="1" autocomplete="off" id="strVal" />
-          <span id="strMod">0</span>
-          <span class="characteristicName">Сила</span>
+      <div id="rightSide">
+        <div id="levelDiv">
+          <span>Уровень: </span>
+          <input type="number" name="level" id="level" max="20" min="1" />
         </div>
+        <div id="CharacteristicsAndImage">
+          <div id="portrait"></div>
 
-        <div id="dexterityDiv">
-          <input type="number" min="1" max="30" step="1" autocomplete="off" id="dexVal" />
-          <span id="dexMod">0</span>
-          <span class="characteristicName">Ловкость</span>
-        </div>
+          <div id="strengthDiv">
+            <input
+              type="number"
+              min="1"
+              max="30"
+              step="1"
+              autocomplete="off"
+              id="strVal"
+            />
+            <span id="strMod">0</span>
+            <span class="characteristicName">Сила</span>
+          </div>
 
-        <div id="constitutionDiv">
-          <input type="number" min="1" max="30" step="1" autocomplete="off" id="conVal" />
-          <span id="conMod">0</span>
-          <span class="characteristicName">Телосложение</span>
-        </div>
+          <div id="dexterityDiv">
+            <input
+              type="number"
+              min="1"
+              max="30"
+              step="1"
+              autocomplete="off"
+              id="dexVal"
+            />
+            <span id="dexMod">0</span>
+            <span class="characteristicName">Ловкость</span>
+          </div>
 
-        <div id="intelligenceDiv">
-          <input type="number" min="1" max="30" step="1" autocomplete="off" id="intVal" />
-          <span id="intMod">0</span>
-          <span class="characteristicName">Интеллект</span>
-        </div>
+          <div id="constitutionDiv">
+            <input
+              type="number"
+              min="1"
+              max="30"
+              step="1"
+              autocomplete="off"
+              id="conVal"
+            />
+            <span id="conMod">0</span>
+            <span class="characteristicName">Телосложение</span>
+          </div>
 
-        <div id="wisdomDiv">
-          <input type="number" min="1" max="30" step="1" autocomplete="off" id="wisVal" />
-          <span id="wisMod">0</span>
-          <span class="characteristicName">Мудрость</span>
-        </div>
+          <div id="intelligenceDiv">
+            <input
+              type="number"
+              min="1"
+              max="30"
+              step="1"
+              autocomplete="off"
+              id="intVal"
+            />
+            <span id="intMod">0</span>
+            <span class="characteristicName">Интеллект</span>
+          </div>
 
-        <div id="charismaDiv">
-          <input type="number" min="1" max="30" step="1" autocomplete="off" id="chaVal" />
-          <span id="chaMod">0</span>
-          <span class="characteristicName">Харизма</span>
-        </div>
+          <div id="wisdomDiv">
+            <input
+              type="number"
+              min="1"
+              max="30"
+              step="1"
+              autocomplete="off"
+              id="wisVal"
+            />
+            <span id="wisMod">0</span>
+            <span class="characteristicName">Мудрость</span>
+          </div>
 
-        <div id="ACShield"><span id="AC">14</span></div>
+          <div id="charismaDiv">
+            <input
+              type="number"
+              min="1"
+              max="30"
+              step="1"
+              autocomplete="off"
+              id="chaVal"
+            />
+            <span id="chaMod">0</span>
+            <span class="characteristicName">Харизма</span>
+          </div>
 
-        <div id="initiative"><span id="Initiative"></span></div>
+          <div id="ACShield">
+            <input type="number" id="AC" autocomplete="off" />
+          </div>
 
-        <div id="speed"><span id="Speed"></span></div>
+          <div id="initiative"><span id="Initiative"></span></div>
 
-        <div id="profBonus">
-          <span id="PB"></span>
-          <span id="profBonusName">БМ</span>
+          <div id="speed"><span id="Speed"></span></div>
+
+          <div id="profBonus">
+            <span id="PB"></span>
+            <span id="profBonusName">БМ</span>
+          </div>
         </div>
       </div>
     </div>

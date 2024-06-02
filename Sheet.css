@@ -23,13 +23,13 @@ body {
   align-items: center;
 }
 
-#sexChanger{
-	margin-left: 1vw;
-	font-size: 2vw;
-	background-color: transparent;
-	border: 0;
-	outline: none;
-	cursor: pointer;
+#sexChanger {
+  margin-left: 1vw;
+  font-size: 2vw;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  cursor: pointer;
 }
 
 #CharacteristicsAndImage {
@@ -163,9 +163,9 @@ body {
   top: 1.6vw;
   left: 2.25vw;
 
-	background-color: transparent;
-	border: 0;
-	outline: 0;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
 }
 
 #strMod,
@@ -208,6 +208,20 @@ body {
   width: 5vw;
 
   font-family: Cattedrale;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+}
+#AC::-webkit-outer-spin-button,
+#AC::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Works for Firefox */
+#AC[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 #initiative {
@@ -220,6 +234,22 @@ body {
   border-radius: 0;
   background-color: transparent;
   background-image: url("./images/initiative.png");
+}
+#Speed,
+#Initiative {
+  width: 4vw;
+  font-size: 3vw;
+  text-align: center;
+  font-family: Cattedrale;
+
+  position: absolute;
+  margin-top: 0;
+  display: block;
+  content: "";
+  top: 2vw;
+  left: 2vw;
+
+  cursor: default;
 }
 
 #speed {
@@ -278,7 +308,7 @@ body {
   top: 1.6vw;
   left: 2.25vw;
 
-	cursor: default;
+  cursor: default;
 }
 
 #characterName {
@@ -331,6 +361,22 @@ body {
   background-color: transparent;
 }
 
+#levelDiv {
+  font-size: 1.5vw;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+#level {
+  border-color: yellow;
+  background-color: rgba(155, 137, 44, 0.526);
+  font-size: 1.5vw;
+  height: 1vw;
+  margin-left: 1vw;
+  width: 2.5vw;
+  margin-top: 0.3vw;
+}
+
 #skillsBackground {
   aspect-ratio: 1/2;
   width: 20vw;
@@ -340,8 +386,8 @@ body {
   background-size: 100% 100%;
   background-image: url("./images/skillsFrame.png");
 }
-#skillsBackground h1{
-	background: linear-gradient(to bottom, #cfc09f 27%, #ffecb3 40%, #b37f18 78%);
+#skillsBackground h1 {
+  background: linear-gradient(to bottom, #cfc09f 27%, #ffecb3 40%, #b37f18 78%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -350,11 +396,11 @@ body {
   text-align: center;
   font-weight: bold;
 
-	width: 5vw;
+  width: 5vw;
 
-	position: absolute;
-	margin-left: 7.5vw;
-	margin-top: 0.3vw;
+  position: absolute;
+  margin-left: 7.5vw;
+  margin-top: 0.3vw;
   font-size: 1vw;
 }
 
@@ -420,5 +466,5 @@ body {
   background-size: 2vw 1.2vw;
   background-repeat: no-repeat;
 
-	cursor: default;
+  cursor: default;
 }
