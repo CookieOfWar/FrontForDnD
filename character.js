@@ -15,8 +15,6 @@ const INT = document.getElementById("intVal");
 const WIS = document.getElementById("wisVal");
 const CHA = document.getElementById("chaVal");
 
-console.log(STR, DEX, CON, INT, WIS, CHA);
-
 var Level = 1;
 const sexChanger = document.getElementById("sexChanger");
 var Sex = "male";
@@ -89,6 +87,7 @@ GetDataBase().then((data) => {
   racesDetails = data[2];
   spells = data[3];
   configureElements(data[0], data[1]);
+  updateTable();
 });
 
 async function GetDataBase() {
@@ -143,6 +142,7 @@ characterClass.addEventListener("change", (event) => {
   characterClass.style.backgroundImage = `url("./images/DicesClasses/${event.target.value.toLowerCase()}.png")`;
   document.getElementById("Speed").innerHTML =
     racesDetails[`${characterRace.value.toLowerCase()}`][0]["speed"];
+  updateTable();
 });
 sexChanger.addEventListener("click", (event) => {
   Sex = Sex == "male" ? "female" : "male";
@@ -190,7 +190,6 @@ function updateCharacteristicMods() {
     getValueModifier(+STR.value) > 0
       ? `+${getValueModifier(+STR.value)}`
       : `${getValueModifier(+STR.value)}`;
-  console.log(getValueModifier(+STR.value));
 
   document.getElementById("Initiative").innerHTML = document.getElementById(
     "dexMod"

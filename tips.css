@@ -1,0 +1,66 @@
+#levelingTip {
+  position: absolute;
+  top: 3vw;
+  left: 40vw;
+  /* width: 50vw; */
+  height: 80vh;
+  margin: 0;
+  background-color: transparent;
+  background-image: url("./images/pergament.jpg");
+  background-size: 100% 100%;
+  max-width: 50vw;
+  display: none;
+
+  font-size: 1.5vw;
+
+  overflow-y: scroll;
+
+  /* overflow: visible; */
+}
+#levelingTip > * {
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+}
+
+.table_header > * {
+  padding-right: 1vw;
+  padding-left: 1vw;
+  background-color: rgba(87, 81, 81, 0.336);
+}
+tr {
+  margin: 0;
+}
+table,
+td {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+table {
+  font-size: 1.1vw;
+  /* font-weight: bold; */
+}
+
+.long {
+  /* text-align: center; */
+}
+td:has(> span[class="long"]) {
+  text-align: center;
+}
+.short {
+  position: absolute;
+  display: none;
+}
+
+.explanation {
+  position: fixed;
+  width: 70vw;
+  left: 3vw;
+  /* top: 10vw; */
+  height: 20vw;
+  font-size: 1.1vw;
+  background-color: white;
+  overflow-y: scroll;
+}
