@@ -117,7 +117,7 @@ function configureElements(classes, races) {
   characterRace.value = "Human";
   characterRace.dispatchEvent(new Event("change"));
 
-  characterClass.value = "Fighter";
+  characterClass.value = "Wizard";
   characterClass.dispatchEvent(new Event("change"));
 
   [STR, DEX, CON, INT, WIS, CHA].forEach((item) => {

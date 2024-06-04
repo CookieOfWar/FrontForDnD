@@ -8,7 +8,7 @@
   background-color: transparent;
   background-image: url("./images/pergament.jpg");
   background-size: 100% 100%;
-  max-width: 50vw;
+  max-width: 55vw;
   display: none;
 
   font-size: 1.5vw;
@@ -36,11 +36,18 @@ table,
 td {
   border-collapse: collapse;
   border: 1px solid black;
+	text-align: center;
 }
 
 table {
   font-size: 1.1vw;
   /* font-weight: bold; */
+}
+.wide_table{
+	font-size: 0.7vw;
+}
+.wide_table td{
+	max-width: 7vw;
 }
 
 .long {
@@ -54,13 +61,60 @@ td:has(> span[class="long"]) {
   display: none;
 }
 
+.tableAbility, .spellTip{
+	text-decoration-line: underline ;
+	cursor: pointer;
+}
+
+
+
 .explanation {
   position: fixed;
-  width: 70vw;
+  /*width: 70vw;*/
+	max-width: 70vw;
+  /*height: 20vw;*/
+	max-height: 20vw;
   left: 3vw;
   /* top: 10vw; */
-  height: 20vw;
   font-size: 1.1vw;
-  background-color: white;
-  overflow-y: scroll;
+  background-color: rgb(235, 235, 235);
+	/*background-image: url("./images/pergament.jpg");*/
+  overflow-y: auto;
+}
+.explanation > * {
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+}
+
+.spell{
+	position: fixed;
+	max-width: 30vw;
+	min-height: 10vw;
+	height: 20vw;
+	left: 3vw;
+	overflow-y: auto;
+	background-color: white;
+}
+.spellInfo{
+	display: flex;
+	flex-direction: column;
+}
+.spellName{
+	font-size: 1.5vw;
+	font-weight: bold;
+}
+.spellDamage{
+	font-size: 1.2vw;
+	font-weight: bold;
+	margin-bottom: 0.5vw;
+	display: flex;
+	flex-direction: row;
+}
+.spellDescription{
+	font-size: 1.3vw;
+}
+.spellDamageValue{
+	margin-right: 1vw;
 }
