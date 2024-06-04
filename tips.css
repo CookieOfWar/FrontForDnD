@@ -16,6 +16,13 @@
   overflow-y: scroll;
 
   /* overflow: visible; */
+
+  border-image: linear-gradient(to bottom, #865c00, #ffe494, #8f5f00) 30;
+  border-width: 0.2vw;
+  border-style: solid;
+
+  scrollbar-width: thin;
+  scrollbar-color: rgb(165, 148, 0) transparent;
 }
 #levelingTip > * {
   margin-left: 1vw;
@@ -36,18 +43,18 @@ table,
 td {
   border-collapse: collapse;
   border: 1px solid black;
-	text-align: center;
+  text-align: center;
 }
 
 table {
   font-size: 1.1vw;
   /* font-weight: bold; */
 }
-.wide_table{
-	font-size: 0.7vw;
+.wide_table {
+  font-size: 0.7vw;
 }
-.wide_table td{
-	max-width: 7vw;
+.wide_table td {
+  max-width: 7vw;
 }
 
 .long {
@@ -61,26 +68,36 @@ td:has(> span[class="long"]) {
   display: none;
 }
 
-.tableAbility, .spellTip{
-	text-decoration-line: underline ;
-	cursor: pointer;
+.tableAbility,
+.spellTip {
+  text-decoration-line: underline;
+  cursor: pointer;
 }
-
-
 
 .explanation {
   position: fixed;
   /*width: 70vw;*/
-	max-width: 70vw;
+  max-width: 70vw;
   /*height: 20vw;*/
-	max-height: 20vw;
+  max-height: 20vw;
   left: 3vw;
   /* top: 10vw; */
   font-size: 1.1vw;
-  background-color: rgb(235, 235, 235);
-	/*background-image: url("./images/pergament.jpg");*/
+  /* background-color: rgb(235, 235, 235); */
+  background-color: transparent;
+  background-color: rgba(216, 157, 68, 0.753);
   overflow-y: auto;
+
+  border-image: linear-gradient(to bottom, #865c00, #ffe494, #8f5f00) 30;
+  border-width: 0.2vw;
+  border-style: solid;
+  /* border-radius: 50%; */
+
+  scrollbar-width: thin;
+  scrollbar-color: rgb(165, 148, 0) transparent;
+  text-align: start;
 }
+
 .explanation > * {
   margin-left: 1vw;
   margin-right: 1vw;
@@ -88,33 +105,79 @@ td:has(> span[class="long"]) {
   margin-bottom: 1vw;
 }
 
-.spell{
-	position: fixed;
-	max-width: 30vw;
-	min-height: 10vw;
-	height: 20vw;
-	left: 3vw;
-	overflow-y: auto;
-	background-color: white;
+.spell {
+  position: fixed;
+  max-width: 30vw;
+  /* min-height: 10vw; */
+  max-height: 20vw;
+  left: 3vw;
+  overflow-y: hidden;
+  background-color: white;
+
+  border-image: linear-gradient(to bottom, #aa7502, #ffe494, #8f5f00) 30;
+  border-width: 0.2vw;
+  border-style: solid;
+
+  background-image: linear-gradient(
+    to bottom,
+    rgb(31, 27, 24) 85%,
+    rgb(126, 126, 126) 130%
+  );
+  background-size: 100% 100%;
+
+  padding: 0.6vw 0.6vw 0.6vw 0.6vw;
 }
-.spellInfo{
-	display: flex;
-	flex-direction: column;
+
+.spellInfo {
+  padding: 0;
+  /* position: relative; */
+  max-height: 20vw;
+  display: flex;
+  flex-direction: column;
+  color: rgb(99, 78, 60);
+  text-align: left;
 }
-.spellName{
-	font-size: 1.5vw;
-	font-weight: bold;
+.spellName {
+  font-size: 1vw;
+  font-weight: bold;
+  color: white;
 }
-.spellDamage{
-	font-size: 1.2vw;
-	font-weight: bold;
-	margin-bottom: 0.5vw;
-	display: flex;
-	flex-direction: row;
+.spellDamage {
+  /* font-size: 1vw; */
+  font-weight: bold;
+  margin-bottom: 0.5vw;
+  display: flex;
+  flex-direction: row;
 }
-.spellDescription{
-	font-size: 1.3vw;
+.spellDescriptionDiv {
+  max-height: 100%;
+  font-size: 1vw;
+  overflow-y: auto;
 }
-.spellDamageValue{
-	margin-right: 1vw;
+.spellDescription {
+  height: 100%;
+}
+.spellDamageValue {
+  margin-right: 1vw;
+}
+
+.spellRangeNclasses {
+  color: rgb(129, 129, 129);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 0.3vw;
+  padding-bottom: 0.3vw;
+}
+
+.spellTimeLevel {
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* height: 1vw; */
+}
+.spellClasses {
+  font-size: 0.7vw;
 }

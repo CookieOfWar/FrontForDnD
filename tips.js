@@ -2,13 +2,15 @@ const classLevelingButton = document.getElementById("levelsInformationButton");
 const levelingTip = document.getElementById("levelingTip");
 
 var classTable;
+var lastTag = null;
+var lastSpell = null;
 
-isLevelingOpened = true;
+isLevelingOpened = false;
 
 function updateTable() {
   getTable().then((data) => {
     classTable = data[0];
-		classLevelingButton.dispatchEvent(new Event("click"));
+    // classLevelingButton.dispatchEvent(new Event("click"));
   });
 }
 
@@ -46,17 +48,29 @@ function AbilityTip(e, tag) {
   //e.preventDefault();
   if (tag.innerHTML.indexOf("<") != -1) {
     tag.innerHTML = tag.innerHTML.slice(0, tag.innerHTML.indexOf("<dialog"));
+    lastTag = null;
   } else {
     if (
       classTable["explanations"][
         tag.innerHTML.toLowerCase().replace(/ \([0-9а-яА-Я ]+\)/, "")
       ] != undefined
     ) {
-
-      let t = (100 / document.body.clientWidth * (tag.getBoundingClientRect().top + 0.02 * document.body.clientWidth));
+      let t =
+        (100 / document.body.clientWidth) *
+        (tag.getBoundingClientRect().top + 0.02 * document.body.clientWidth);
       // tag.innerHTML += classTable["explanations"][tag.innerHTML.toLowerCase()];
       if (tag.getBoundingClientRect().top > 0.55 * document.body.clientHeight) {
-        t = 100 / document.body.clientWidth * (tag.getBoundingClientRect().top - 0.24 * document.body.clientWidth);
+        t =
+          (100 / document.body.clientWidth) *
+          (tag.getBoundingClientRect().top - 0.24 * document.body.clientWidth);
+      }
+
+      if (lastTag == null) lastTag = tag;
+      else {
+        if (lastTag != tag) {
+          AbilityTip(null, lastTag);
+          lastTag = tag;
+        }
       }
 
       tag.innerHTML += `<dialog open class="explanation" onclick="event.stopPropagation();" style="top:${
@@ -68,15 +82,16 @@ function AbilityTip(e, tag) {
           : tag.innerHTML.toLowerCase().replace(/ \([0-9а-яА-Я ]+\)\/½/, "")
       ].replaceAll(
         `<span class="spellTip">`,
-        `<span class="spellTip" onclick="SpellTip(this);">`
+        `<span class="spellTip" onclick="SpellTip(event, this);">`
       )}</dialog>`;
     }
   }
 }
 
-function SpellTip(tag) {
+function SpellTip(e, tag) {
   if (tag.innerHTML.indexOf("<") != -1) {
     tag.innerHTML = tag.innerHTML.slice(0, tag.innerHTML.indexOf("<dialog"));
+    lastSpell = null;
   } else {
     filteredSpell = Object.keys(spells).reduce((acc, key) => {
       let filteredSpells = spells[key].filter(
@@ -88,7 +103,6 @@ function SpellTip(tag) {
       return acc;
     }, {});
     if (Object.keys(filteredSpell).length > 0) {
-
       let typeColors = {
         Гром: "rgb(136, 102, 177);",
         Огонь: "rgb(234, 108, 0);",
@@ -102,7 +116,8 @@ function SpellTip(tag) {
         Колющий: "rgb(222, 222, 222);",
         Режущий: "rgb(222, 222, 222);",
         Дробящий: "rgb(222, 222, 222);",
-				Электрический: "rgb(76, 129, 206);",
+        Электрический: "rgb(76, 129, 206);",
+        Усиление: "rgb(140, 185, 34);",
       };
 
       let lvlShift = 0;
@@ -114,27 +129,101 @@ function SpellTip(tag) {
         lvlShift++;
       }
 
-			let t = (100 / document.body.clientWidth * (tag.getBoundingClientRect().top + 0.02 * document.body.clientWidth));
+      let t =
+        (100 / document.body.clientWidth) *
+        (tag.getBoundingClientRect().top + 0.02 * document.body.clientWidth);
       // tag.innerHTML += classTable["explanations"][tag.innerHTML.toLowerCase()];
       if (tag.getBoundingClientRect().top > 0.55 * document.body.clientHeight) {
-        t = 100 / document.body.clientWidth * (tag.getBoundingClientRect().top - 0.24 * document.body.clientWidth);
+        t =
+          (100 / document.body.clientWidth) *
+          (tag.getBoundingClientRect().top - 0.24 * document.body.clientWidth);
       }
 
-      tag.innerHTML += `<dialog open class="spell" onclick="event.stopPropagation();" style="top:${t}vw; left:${100/document.body.clientWidth * (tag.getBoundingClientRect().left + 0.01 * document.body.clientWidth)}vw;">
+      if (lastSpell == null) lastSpell = tag;
+      else {
+        if (lastTag != tag) {
+          SpellTip(null, lastSpell);
+          lastSpell = tag;
+        }
+      }
+
+      let durationColor = `color: rgb(129, 129, 129)`;
+      if (filteredSpell[Object.keys(filteredSpell)[0]][0].concentration) {
+        durationColor = `color: rgb(196, 110, 12);`;
+      }
+
+      let damageFont = `1vw`;
+      if (filteredSpell[Object.keys(filteredSpell)[0]][0].damageType == "") {
+        damageFont = `0`;
+      }
+
+      let actionIcon = ``;
+      console.log(filteredSpell[Object.keys(filteredSpell)[0]][0].time);
+
+      switch (filteredSpell[Object.keys(filteredSpell)[0]][0].time) {
+        case "Действие":
+          actionIcon = `<img src="./images/actionIcon.png" style="aspect-ratio: 1/1; width: 1.2vw">`;
+          console.log("yeahh");
+          break;
+        case "Бонусное действие":
+          actionIcon = `<img src="./images/bonusActionIcon.png" style="aspect-ratio: 1/1; width: 1.2vw">`;
+          break;
+        case "Реакция":
+          actionIcon = `<img src="./images/reactionIcon.png" style="aspect-ratio: 1/1; width: 1.2vw">`;
+          break;
+        default:
+          break;
+      }
+
+      console.log(actionIcon);
+
+      tag.innerHTML += `<dialog open class="spell" onclick="event.stopPropagation();" style="top:${t}vw; left:${
+        (100 / document.body.clientWidth) *
+        (tag.getBoundingClientRect().left + 0.01 * document.body.clientWidth)
+      }vw;">
 			<div class="spellInfo">
-			<span class="spellName">${filteredSpell[Object.keys(filteredSpell)[0]][0].name}
+			<div class="spellTop">
+			<span class="spellName">
+			${filteredSpell[Object.keys(filteredSpell)[0]][0].name}
 			</span>
-			<div class="spellDamage">
+			<div class="spellDamage" style="font-size: ${damageFont}">
 			<span class="spellDamageValue">
 			${filteredSpell[Object.keys(filteredSpell)[0]][0].damage[Level - lvlShift]}
 			</span>
-			<span class="spellDamageType" style="color:${typeColors[filteredSpell[Object.keys(filteredSpell)[0]][0].damageType]}">
+			<span class="spellDamageType" style="color:${
+        typeColors[filteredSpell[Object.keys(filteredSpell)[0]][0].damageType]
+      }">
 			${filteredSpell[Object.keys(filteredSpell)[0]][0].damageType}
 			</span>
 			</div>
+			<span style="color: rgb(129, 129, 129)">
+			Длительность: 
+			</span>
+			<span class="spellDuration" style="${durationColor}">
+			${filteredSpell[Object.keys(filteredSpell)[0]][0].duration}
+			</span>
+			</div>
+			<div class="spellDescriptionDiv">
 			<span class="spellDescription">
 			${filteredSpell[Object.keys(filteredSpell)[0]][0].description}
 			</span>
+			</div>
+			<div class="spellBottom">
+			<div class="spellRangeNclasses">
+			<span class="spellRange">
+			${filteredSpell[Object.keys(filteredSpell)[0]][0].range}
+			</span>
+			<span class="spellClasses">
+			${filteredSpell[Object.keys(filteredSpell)[0]][0].classes}
+			</span>
+			</div>
+			<div class="spellTimeLevel">
+			<span class="spellTime">
+			${actionIcon}
+			${filteredSpell[Object.keys(filteredSpell)[0]][0].time}
+			</span>
+			</div>
+			</div>
 			</div>
 			</dialog>`;
     }

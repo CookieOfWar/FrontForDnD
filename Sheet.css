@@ -27,9 +27,11 @@ body {
   margin-left: 1vw;
   font-size: 2vw;
   background-color: transparent;
-  border: 0;
+  border-color: rgb(233, 219, 19);
+  border-radius: 50%;
   outline: none;
   cursor: pointer;
+  filter: hue-rotate(0deg) saturate(2) brightness(1.5);
 }
 
 #CharacteristicsAndImage {
@@ -370,7 +372,7 @@ body {
 #level {
   border-color: yellow;
   background-color: rgba(155, 137, 44, 0.526);
-  font-size: 1.5vw;
+  font-size: 1.3vw;
   height: 1vw;
   margin-left: 1vw;
   width: 2.5vw;
