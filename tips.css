@@ -156,9 +156,11 @@ td:has(> span[class="long"]) {
 }
 .spellDescription {
   height: 100%;
+	color: rgb(173, 154, 136);
 }
 .spellDamageValue {
   margin-right: 1vw;
+	color: rgb(173, 154, 136);
 }
 
 .spellRangeNclasses {
@@ -176,8 +178,20 @@ td:has(> span[class="long"]) {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+	color: rgb(173, 154, 136);
   /* height: 1vw; */
 }
 .spellClasses {
   font-size: 0.7vw;
+}
+
+.spellIcon{
+	aspect-ratio: 1/1;
+	width: 4vw;
+	position: fixed;
+	background-size: 100% 100%;
+	background-color: rgb(31, 27, 24);
+
+	border-radius: 50%;
+	border: red 2px solid;
 }

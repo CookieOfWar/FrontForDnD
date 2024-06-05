@@ -44,8 +44,6 @@ classLevelingButton.addEventListener("click", () => {
 });
 
 function AbilityTip(e, tag) {
-  //console.log(e);
-  //e.preventDefault();
   if (tag.innerHTML.indexOf("<") != -1) {
     tag.innerHTML = tag.innerHTML.slice(0, tag.innerHTML.indexOf("<dialog"));
     lastTag = null;
@@ -103,21 +101,22 @@ function SpellTip(e, tag) {
       return acc;
     }, {});
     if (Object.keys(filteredSpell).length > 0) {
-      let typeColors = {
-        Гром: "rgb(136, 102, 177);",
-        Огонь: "rgb(234, 108, 0);",
-        Холод: "rgb(136, 204, 227);",
-        Кислота: "rgb(212, 222, 3);",
-        Яд: "rgb(161, 183, 79);",
-        Лучистый: "rgb(233, 201, 118);",
-        Некротический: "rgb(105, 183, 135);",
-        Сила: "rgb(183, 86, 87);",
-        Психический: "rgb(225, 136, 201);",
-        Колющий: "rgb(222, 222, 222);",
-        Режущий: "rgb(222, 222, 222);",
-        Дробящий: "rgb(222, 222, 222);",
-        Электрический: "rgb(76, 129, 206);",
-        Усиление: "rgb(140, 185, 34);",
+      let typeColorsImages = {
+        Гром: ["rgb(136, 102, 177);", `background-image: url('./images/thunderDamage.png');`],
+        Огонь: ["rgb(234, 108, 0);", `background-image: url('./images/fireDamage.png');`],
+        Холод: ["rgb(136, 204, 227);", `background-image: url('./images/coldDamage.png');`],
+        Кислота: ["rgb(212, 222, 3);", `background-image: url('./images/acidDamage.png');`],
+        Яд: ["rgb(161, 183, 79);", `background-image: url('./images/poisonDamage.png');`],
+        Лучистый: ["rgb(233, 201, 118);", `background-image: url('./images/radiantDamage.png');`],
+        Некротический: ["rgb(105, 183, 135);", `background-image: url('./images/necroticDamage.png');`],
+        Сила: ["rgb(183, 86, 87);", `background-image: url('./images/forceDamage.png');`],
+        Психический: ["rgb(225, 136, 201);", `background-image: url('./images/psychicDamage.png');`],
+        Колющий: ["rgb(222, 222, 222);", `background-image: url('./images/piercingDamage.png');`],
+        Режущий: ["rgb(222, 222, 222);", `background-image: url('./images/slashingDamage.png');`],
+        Дробящий: ["rgb(222, 222, 222);", `background-image: url('./images/bludgeoningDamage.png');`],
+        Электрический: ["rgb(76, 129, 206);", `background-image: url('./images/lighningDamage.png');`],
+        Усиление: ["rgb(237, 234, 40);", `background-image: url('./images/boost.png');`],
+				"": ["transparent", "background-image: none;"]
       };
 
       let lvlShift = 0;
@@ -158,12 +157,10 @@ function SpellTip(e, tag) {
       }
 
       let actionIcon = ``;
-      console.log(filteredSpell[Object.keys(filteredSpell)[0]][0].time);
 
       switch (filteredSpell[Object.keys(filteredSpell)[0]][0].time) {
         case "Действие":
           actionIcon = `<img src="./images/actionIcon.png" style="aspect-ratio: 1/1; width: 1.2vw">`;
-          console.log("yeahh");
           break;
         case "Бонусное действие":
           actionIcon = `<img src="./images/bonusActionIcon.png" style="aspect-ratio: 1/1; width: 1.2vw">`;
@@ -175,8 +172,6 @@ function SpellTip(e, tag) {
           break;
       }
 
-      console.log(actionIcon);
-
       tag.innerHTML += `<dialog open class="spell" onclick="event.stopPropagation();" style="top:${t}vw; left:${
         (100 / document.body.clientWidth) *
         (tag.getBoundingClientRect().left + 0.01 * document.body.clientWidth)
@@ -186,12 +181,15 @@ function SpellTip(e, tag) {
 			<span class="spellName">
 			${filteredSpell[Object.keys(filteredSpell)[0]][0].name}
 			</span>
+
+			<div class="spellIcon"></div>
+
 			<div class="spellDamage" style="font-size: ${damageFont}">
 			<span class="spellDamageValue">
 			${filteredSpell[Object.keys(filteredSpell)[0]][0].damage[Level - lvlShift]}
 			</span>
 			<span class="spellDamageType" style="color:${
-        typeColors[filteredSpell[Object.keys(filteredSpell)[0]][0].damageType]
+        typeColorsImages[filteredSpell[Object.keys(filteredSpell)[0]][0].damageType][0]
       }">
 			${filteredSpell[Object.keys(filteredSpell)[0]][0].damageType}
 			</span>
@@ -226,6 +224,12 @@ function SpellTip(e, tag) {
 			</div>
 			</div>
 			</dialog>`;
+
+			let spellDiv = document.querySelector(".spell");
+			let iconPos = (100 / document.body.clientWidth) * (spellDiv.getBoundingClientRect().left + spellDiv.offsetWidth - 0.05 * document.body.clientWidth);
+			console.log(tag.getBoundingClientRect());
+
+			tag.innerHTML = tag.innerHTML.replace(`<div class="spellIcon"></div>`, `<div class="spellIcon" style="${typeColorsImages[filteredSpell[Object.keys(filteredSpell)[0]][0].damageType][1]} left: ${iconPos}vw; top: ${(100 / document.body.clientWidth) * (spellDiv.getBoundingClientRect().top - 0.01 * document.body.clientWidth)}vw;"></div>`);
     }
   }
 }
