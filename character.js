@@ -87,7 +87,6 @@ GetDataBase().then((data) => {
   racesDetails = data[2];
   spells = data[3];
   configureElements(data[0], data[1]);
-  updateTable();
 });
 
 async function GetDataBase() {
@@ -126,7 +125,7 @@ function configureElements(classes, races) {
   updatePB();
   updateCharacteristicMods();
   updateSkillVals();
-  document.getElementById("Speed").innerHTML =
+  document.getElementById("Speed").value =
     racesDetails[`${characterRace.value.toLowerCase()}`][0]["speed"];
 
   document.getElementById("level").value = 1;
@@ -134,13 +133,13 @@ function configureElements(classes, races) {
 
 characterRace.addEventListener("change", (event) => {
   changePortrait();
-  document.getElementById("Speed").innerHTML =
+  document.getElementById("Speed").value =
     racesDetails[`${characterRace.value.toLowerCase()}`][0]["speed"];
 });
 characterClass.addEventListener("change", (event) => {
   changePortrait();
   characterClass.style.backgroundImage = `url("./images/DicesClasses/${event.target.value.toLowerCase()}.png")`;
-  document.getElementById("Speed").innerHTML =
+  document.getElementById("Speed").value =
     racesDetails[`${characterRace.value.toLowerCase()}`][0]["speed"];
   updateTable();
 });
@@ -166,6 +165,7 @@ document.getElementById("level").addEventListener("input", (e) => {
   Level = e.target.value;
   updatePB();
   updateSkillVals();
+  updateHP();
 });
 
 [STR, DEX, CON, INT, WIS, CHA].forEach((item) =>

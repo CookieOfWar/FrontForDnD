@@ -215,3 +215,43 @@ td:has(> span[class="long"]) {
   -webkit-mask-composite: xor;
   mask-composite: exclude;
 }
+
+#resistancesPanel {
+  position: absolute;
+  top: 20vw;
+  left: 20vw;
+  width: 30vw;
+  height: 11vw;
+  margin: 0;
+  background-color: transparent;
+  background-image: url("./images/pergament.jpg");
+  background-size: 100% 100%;
+  max-width: 55vw;
+  display: none;
+
+  font-size: 1.5vw;
+
+  /* overflow-y: scroll; */
+
+  /* overflow: visible; */
+
+  border-image: linear-gradient(to bottom, #865c00, #ffe494, #8f5f00) 30;
+  border-width: 0.2vw;
+  border-style: solid;
+
+  scrollbar-width: thin;
+  scrollbar-color: rgb(165, 148, 0) transparent;
+}
+
+#resistanceTypesOfDamage {
+  margin-top: 0.5vw;
+}
+#resistanceTypesOfDamage > button {
+  width: 1.85vw;
+  height: 1.85vw;
+  background-size: 100% 100%;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}

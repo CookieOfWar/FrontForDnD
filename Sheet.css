@@ -24,14 +24,20 @@ body {
 }
 
 #sexChanger {
+  aspect-ratio: 1/1;
+  width: 3vw;
+
   margin-left: 1vw;
   font-size: 2vw;
   background-color: transparent;
   border-color: rgb(233, 219, 19);
+  border-width: 0.2vw;
   border-radius: 50%;
   outline: none;
   cursor: pointer;
   filter: hue-rotate(0deg) saturate(2) brightness(1.5);
+
+  text-align: center;
 }
 
 #CharacteristicsAndImage {
@@ -253,7 +259,11 @@ body {
 
   cursor: default;
 }
-
+#Speed {
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+}
 #speed {
   transform: rotate(60deg) translate(calc(var(--radius) + 1vw)) rotate(-60deg);
   aspect-ratio: 1/1;
@@ -533,4 +543,180 @@ body {
   margin-left: 28.9vw;
   margin-top: 12.7vw;
   font-size: 1vw;
+}
+
+#maxHP,
+#currHP,
+#tempHP,
+#diceHP,
+#diceHPAmount {
+  font-family: Cattedrale;
+  position: absolute;
+  text-align: center;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  font-size: 3vw;
+
+  width: 5.2vw;
+}
+#maxHP::-webkit-outer-spin-button,
+#maxHP::-webkit-inner-spin-button,
+#currHP::-webkit-outer-spin-button,
+#currHP::-webkit-inner-spin-button,
+#tempHP::-webkit-outer-spin-button,
+#tempHP::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Works for Firefox */
+#maxHP[type="number"],
+#currHP[type="number"],
+#tempHP[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+#maxHP {
+  margin-left: 17vw;
+  margin-top: 5.5vw;
+}
+#currHP {
+  margin-left: 5vw;
+  margin-top: 4vw;
+}
+#tempHP {
+  margin-left: 29vw;
+  margin-top: 3.7vw;
+}
+#diceHP {
+  margin-left: 26.5vw;
+  margin-top: 9vw;
+  font-size: 2vw;
+}
+#diceHPAmount {
+  margin-left: 32vw;
+  margin-top: 9vw;
+  font-size: 2vw;
+}
+
+#deathThrowsText {
+  font-size: 0.7vw;
+  width: 4.5vw;
+  margin-left: 17.9vw;
+  margin-top: 19.3vw;
+}
+#deathThrowsSuccess {
+  font-size: 1vw;
+  width: 4.5vw;
+  margin-left: 7.7vw;
+  margin-top: 19.9vw;
+}
+#deathThrowsFailure {
+  font-size: 1vw;
+  width: 4.5vw;
+  margin-left: 27.8vw;
+  margin-top: 19.9vw;
+}
+
+#DTCheckboxDiv input {
+  display: none;
+}
+#DTCheckboxDiv label {
+  aspect-ratio: 1/1;
+  width: 2.5vw;
+  display: inline-block;
+  content: "";
+  background-image: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+}
+#HPDeathDiv input:checked + label[class="DTFlabel"] {
+  background-image: url("./images/crystalRed.png");
+}
+#HPDeathDiv input:checked + label[class="DTSlabel"] {
+  background-image: url("./images/crystalPurple.png");
+}
+
+#DTCheckboxDiv {
+  position: absolute;
+  margin-top: 22.75vw;
+  display: flex;
+  flex-direction: row;
+  width: 32vw;
+  margin-left: 4.1vw;
+  justify-content: space-between;
+}
+
+#DTSuccessDiv {
+  width: 11.95vw;
+  display: flex;
+  justify-content: space-between;
+}
+#DTFailureDiv {
+  width: 11.95vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+#resistancesDiv {
+  position: absolute;
+  width: 20.7vw;
+  height: 4vw;
+  margin-top: 9.8vw;
+  margin-left: 4.7vw;
+}
+#resistancesDiv > span {
+  position: absolute;
+  font-size: 0.8vw;
+  font-weight: bold;
+  height: 1vw;
+}
+#addResistances {
+  position: absolute;
+  background-image: url("./images/addResistanceFrame.png");
+  background-size: 100% 100%;
+  background-color: transparent;
+  width: 1.5vw;
+  height: 2.1vw;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  margin-left: 19vw;
+}
+#resistanceItem {
+  background-size: 100% 100%;
+  background-color: transparent;
+  width: 1.5vw;
+  height: 2.1vw;
+  border: 0;
+  outline: 0;
+}
+#resListWithButon {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  margin-top: 1vw;
+  width: 20.7vw;
+  height: 2vw;
+}
+
+#resistancesList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between;
+	width: 20.7vw;
+	height: 2vw; */
+}
+#resistancesList > li {
+  margin-right: 0vw;
+  width: 1.7vw;
+  height: 2.7vw;
 }

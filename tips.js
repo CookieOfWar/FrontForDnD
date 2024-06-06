@@ -1,15 +1,91 @@
 const classLevelingButton = document.getElementById("levelsInformationButton");
 const levelingTip = document.getElementById("levelingTip");
+const resistancesPanel = document.getElementById("resistancesPanel");
+const manageResistancesButton = document.getElementById("addResistances");
+
+const diceHP = document.getElementById("diceHP");
+const diceHPAmount = document.getElementById("diceHPAmount");
+
+const resistancesList = document.getElementById("resistancesList");
+const resistanceChoise = document.getElementById("resistanceChoice");
+const immunityChoise = document.getElementById("immunityChoise");
+const vulnerabilityChoise = document.getElementById("vulnerabilityChoise");
+const resTypesChoises = [...document.getElementsByClassName("resTypeOfDamage")];
+const addResButton = document.getElementById("addResButton");
+var resistanceType = 0;
+var resDamageType = 0;
 
 var classTable;
 var lastTag = null;
 var lastSpell = null;
 
-isLevelingOpened = false;
+var isLevelingOpened = false;
+var isResistancesOpened = false;
+
+const typeColorsImages = {
+  Дробящий: [
+    "rgb(222, 222, 222);",
+    `background-image: url('./images/bludgeoningDamage.png');`,
+  ],
+  Колющий: [
+    "rgb(222, 222, 222);",
+    `background-image: url('./images/piercingDamage.png');`,
+  ],
+  Режущий: [
+    "rgb(222, 222, 222);",
+    `background-image: url('./images/slashingDamage.png');`,
+  ],
+  Холод: [
+    "rgb(136, 204, 227);",
+    `background-image: url('./images/coldDamage.png');`,
+  ],
+  Огонь: [
+    "rgb(234, 108, 0);",
+    `background-image: url('./images/fireDamage.png');`,
+  ],
+  Электрический: [
+    "rgb(76, 129, 206);",
+    `background-image: url('./images/lightningDamage.png');`,
+  ],
+  Гром: [
+    "rgb(136, 102, 177);",
+    `background-image: url('./images/thunderDamage.png');`,
+  ],
+  Кислота: [
+    "rgb(212, 222, 3);",
+    `background-image: url('./images/acidDamage.png');`,
+  ],
+  Яд: [
+    "rgb(161, 183, 79);",
+    `background-image: url('./images/poisonDamage.png');`,
+  ],
+  Лучистый: [
+    "rgb(233, 201, 118);",
+    `background-image: url('./images/radiantDamage.png');`,
+  ],
+  Некротический: [
+    "rgb(105, 183, 135);",
+    `background-image: url('./images/necroticDamage.png');`,
+  ],
+  Сила: [
+    "rgb(183, 86, 87);",
+    `background-image: url('./images/forceDamage.png');`,
+  ],
+  Психический: [
+    "rgb(225, 136, 201);",
+    `background-image: url('./images/psychicDamage.png');`,
+  ],
+  Усиление: [
+    "rgb(237, 234, 40);",
+    `background-image: url('./images/boost.png');`,
+  ],
+  "": ["transparent", "background-image: none;"],
+};
 
 function updateTable() {
   getTable().then((data) => {
     classTable = data[0];
+    updateHP();
     // classLevelingButton.dispatchEvent(new Event("click"));
   });
 }
@@ -101,66 +177,6 @@ function SpellTip(e, tag) {
       return acc;
     }, {});
     if (Object.keys(filteredSpell).length > 0) {
-      let typeColorsImages = {
-        Гром: [
-          "rgb(136, 102, 177);",
-          `background-image: url('./images/thunderDamage.png');`,
-        ],
-        Огонь: [
-          "rgb(234, 108, 0);",
-          `background-image: url('./images/fireDamage.png');`,
-        ],
-        Холод: [
-          "rgb(136, 204, 227);",
-          `background-image: url('./images/coldDamage.png');`,
-        ],
-        Кислота: [
-          "rgb(212, 222, 3);",
-          `background-image: url('./images/acidDamage.png');`,
-        ],
-        Яд: [
-          "rgb(161, 183, 79);",
-          `background-image: url('./images/poisonDamage.png');`,
-        ],
-        Лучистый: [
-          "rgb(233, 201, 118);",
-          `background-image: url('./images/radiantDamage.png');`,
-        ],
-        Некротический: [
-          "rgb(105, 183, 135);",
-          `background-image: url('./images/necroticDamage.png');`,
-        ],
-        Сила: [
-          "rgb(183, 86, 87);",
-          `background-image: url('./images/forceDamage.png');`,
-        ],
-        Психический: [
-          "rgb(225, 136, 201);",
-          `background-image: url('./images/psychicDamage.png');`,
-        ],
-        Колющий: [
-          "rgb(222, 222, 222);",
-          `background-image: url('./images/piercingDamage.png');`,
-        ],
-        Режущий: [
-          "rgb(222, 222, 222);",
-          `background-image: url('./images/slashingDamage.png');`,
-        ],
-        Дробящий: [
-          "rgb(222, 222, 222);",
-          `background-image: url('./images/bludgeoningDamage.png');`,
-        ],
-        Электрический: [
-          "rgb(76, 129, 206);",
-          `background-image: url('./images/lighningDamage.png');`,
-        ],
-        Усиление: [
-          "rgb(237, 234, 40);",
-          `background-image: url('./images/boost.png');`,
-        ],
-        "": ["transparent", "background-image: none;"],
-      };
-
       let lvlShift = 0;
       while (
         filteredSpell[Object.keys(filteredSpell)[0]][0].damage[
@@ -296,5 +312,112 @@ function SpellTip(e, tag) {
           }vw;"></div>`
         );
     }
+  }
+}
+
+function updateHP() {
+  var matches = [];
+  classTable["additionalInfo"].replace(
+    /<strong>Кость Хитов: ?<\/strong>[a-zA-Z ="<>\/]+(\d+к\d+)/,
+    function () {
+      matches.push([...arguments]);
+    }
+  );
+  let dice = matches[0][1];
+  diceHP.innerHTML = dice.replace("к", "d");
+  diceHPAmount.innerHTML = Level;
+}
+
+manageResistancesButton.addEventListener("click", () => {
+  if (isResistancesOpened) {
+    resistancesPanel.style.display = "none";
+    isResistancesOpened = false;
+  } else {
+    resistancesPanel.style.display = "block";
+    isResistancesOpened = true;
+    resistanceType = 0;
+    resistanceChoise.style.border = "0";
+    immunityChoise.style.border = "0";
+    vulnerabilityChoise.style.border = "0";
+    resTypesChoises.forEach((resType) => {
+      resType.style.border = "0";
+    });
+    resDamageType = 0;
+  }
+});
+
+resistanceChoise.addEventListener("click", () => {
+  resistanceType = 1;
+  resistanceChoise.style.border = "1px solid yellow";
+  immunityChoise.style.border = "0";
+  vulnerabilityChoise.style.border = "0";
+});
+
+immunityChoise.addEventListener("click", () => {
+  resistanceType = 2;
+  immunityChoise.style.border = "1px solid yellow";
+  resistanceChoise.style.border = "0";
+  vulnerabilityChoise.style.border = "0";
+});
+
+vulnerabilityChoise.addEventListener("click", () => {
+  resistanceType = 3;
+  vulnerabilityChoise.style.border = "1px solid yellow";
+  resistanceChoise.style.border = "0";
+  immunityChoise.style.border = "0";
+});
+
+resTypesChoises.forEach((resType) => {
+  resType.addEventListener("click", () => {
+    resTypesChoises.forEach((resType) => {
+      resType.style.border = "0";
+    });
+    resType.style.border = "1px solid yellow";
+    resDamageType = resTypesChoises.indexOf(resType) + 1;
+  });
+});
+
+addResButton.addEventListener("click", () => {
+  if (resistanceType == 0) {
+    alert("Выберите тип защиты");
+    return;
+  }
+  if (resDamageType == 0) {
+    alert("Выберите тип урона");
+    return;
+  }
+  let li = document.createElement("li");
+  li.innerHTML = `
+	<div class="resistance" style="width: 1.7vw; height: 2.7vw;">
+		<button onclick="removeRes(this, 0)" style="background-color: transparent;background-image: url(./images/${
+      [
+        "fullResistanceFrame.png",
+        "immunityFrame.png",
+        "vulnerabilityFrame.png",
+      ][resistanceType - 1]
+    });width: 1.7vw;height: 2.7vw;background-size: 100% 100%;border: 0;outline: 0;">
+		</button>
+		<div onclick="removeRes(this, 1)" style="background-image: url(./images/${typeColorsImages[
+      Object.keys(typeColorsImages)[resDamageType - 1]
+    ][1]
+      .replace("background-image: url('./images/", "")
+      .replace(
+        "');",
+        ""
+      )}); position: absolute; width: 1.2vw; height: 1.2vw; top: 0; margin-left: 0.25vw; margin-top: 0.8vw; background-size: 100% 100%;">
+		</div>
+	</div>
+	`;
+  resistancesList.appendChild(li);
+});
+
+function removeRes(element, pos) {
+  let ask = confirm("Удалить сопротивление?");
+  if (!ask) return;
+  if (pos == 0) {
+    element.parentElement.remove();
+  }
+  if (pos == 1) {
+    element.parentElement.parentElement.remove();
   }
 }

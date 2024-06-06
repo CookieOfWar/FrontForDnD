@@ -319,9 +319,99 @@
           <div id="HPDeathWeaponsDiv">
             <div id="HPDeathDiv">
               <span class="healthText" id="maxHPText">Макс.ХП</span>
+              <input
+                type="number"
+                name="maxHP"
+                id="maxHP"
+                placeholder="10"
+                autocomplete="off"
+              />
+
               <span class="healthText" id="currentHPText">Текущ.ХП</span>
+              <input
+                type="number"
+                name="currHP"
+                id="currHP"
+                placeholder="10"
+                autocomplete="off"
+              />
+
               <span class="healthText" id="tempHPText">Врем.ХП</span>
-							<span class="healthText" id="diceHPText">Кость ХП</span>
+              <input
+                type="number"
+                name="tempHP"
+                id="tempHP"
+                placeholder="0"
+                autocomplete="off"
+              />
+
+              <span class="healthText" id="diceHPText">Кость ХП</span>
+              <span id="diceHP"></span>
+              <span id="diceHPAmount"></span>
+
+              <div id="resistancesDiv">
+                <span>Сопротивления:</span>
+                <div id="resListWithButon">
+                  <ul id="resistancesList"></ul>
+                  <button id="addResistances"></button>
+                </div>
+              </div>
+
+              <span class="healthText" id="deathThrowsText">
+                Спасброски от смерти
+              </span>
+              <span class="healthText" id="deathThrowsSuccess">Успехи</span>
+              <span class="healthText" id="deathThrowsFailure">Провалы</span>
+
+              <div id="DTCheckboxDiv">
+                <div id="DTSuccessDiv">
+                  <input
+                    type="checkbox"
+                    name="DTS1"
+                    id="DTS1"
+                    class="DTCheckbox"
+                  />
+                  <label for="DTS1" class="DTSlabel" id="DTS1CB"></label>
+                  <input
+                    type="checkbox"
+                    name="DTS2"
+                    id="DTS2"
+                    class="DTCheckbox"
+                  />
+                  <label for="DTS2" class="DTSlabel" id="DTS2CB"></label>
+                  <input
+                    type="checkbox"
+                    name="DTS3"
+                    id="DTS3"
+                    class="DTCheckbox"
+                  />
+                  <label for="DTS3" class="DTSlabel" id="DTS3CB"></label>
+                </div>
+
+                <div id="DTFailureDiv">
+                  <input
+                    type="checkbox"
+                    name="DTF1"
+                    id="DTF1"
+                    class="DTCheckbox"
+                  />
+                  <label for="DTF1" class="DTFlabel" id="DTF1CB"></label>
+                  <input
+                    type="checkbox"
+                    name="DTF2"
+                    id="DTF2"
+                    class="DTCheckbox"
+                  />
+                  <label for="DTF2" class="DTFlabel" id="DTF2CB"></label>
+                  <input
+                    type="checkbox"
+                    name="DTF3"
+                    id="DTF3"
+                    class="DTCheckbox"
+                  />
+                  <label for="DTF3" class="DTFlabel" id="DTF3CB"></label>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -420,7 +510,9 @@
 
           <div id="initiative"><span id="Initiative"></span></div>
 
-          <div id="speed"><span id="Speed"></span></div>
+          <div id="speed">
+            <input type="text" autocomplete="off" id="Speed" />
+          </div>
 
           <div id="profBonus">
             <span id="PB"></span>
@@ -431,6 +523,153 @@
     </div>
 
     <div id="levelingTip"></div>
+    <div id="resistancesPanel">
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+        "
+      >
+        <span style="font-size: 1.5vw">Сопротивления/Уязвимости</span>
+        <button
+          id="resistanceInfoButton"
+          style="
+            aspect-ratio: 1/1;
+            width: 2vw;
+            background-image: url(./images/info.png);
+            background-size: 100% 100%;
+            background-color: transparent;
+            border: 0;
+            outline: 0;
+          "
+        ></button>
+      </div>
+      <div>
+        <button
+          style="
+            width: 2.3vw;
+            height: 3.4vw;
+            background-image: url(./images/fullResistanceFrame.png);
+            background-size: 100% 100%;
+            background-color: transparent;
+            border: 0;
+            outline: 0;
+            cursor: pointer;
+          "
+          id="resistanceChoice"
+        ></button>
+        <button
+          style="
+            width: 2.3vw;
+            height: 3.4vw;
+            background-image: url(./images/immunityFrame.png);
+            background-size: 100% 100%;
+            background-color: transparent;
+            border: 0;
+            outline: 0;
+            cursor: pointer;
+          "
+          id="immunityChoise"
+        ></button>
+        <button
+          style="
+            width: 2.3vw;
+            height: 3.4vw;
+            background-image: url(./images/vulnerabilityFrame.png);
+            background-size: 100% 100%;
+            background-color: transparent;
+            border: 0;
+            outline: 0;
+            cursor: pointer;
+          "
+          id="vulnerabilityChoise"
+        ></button>
+      </div>
+      <div id="resistanceTypesOfDamage">
+        <button
+          id="bludgeoningChoice"
+          style="background-image: url(./images/bludgeoningDamage.png)"
+          class="resTypeOfDamage"
+        ></button>
+        <button
+          id="piercingChoice"
+          style="background-image: url(./images/piercingDamage.png)"
+          class="resTypeOfDamage"
+        ></button>
+        <button
+          id="slashingChoice"
+          style="background-image: url(./images/slashingDamage.png)"
+          class="resTypeOfDamage"
+        ></button>
+        <button
+          id="coldChoice"
+          style="background-image: url(./images/coldDamage.png)"
+          class="resTypeOfDamage"
+        ></button>
+        <button
+          id="fireChoice"
+          style="background-image: url(./images/fireDamage.png)"
+          class="resTypeOfDamage"
+        ></button>
+        <button
+          id="lightningChoice"
+          style="background-image: url(./images/lightningDamage.png)"
+          class="resTypeOfDamage"
+        ></button>
+        <button
+          id="thunderChoice"
+          style="background-image: url(./images/thunderDamage.png)"
+          class="resTypeOfDamage"
+        ></button>
+        <button
+          id="acidChoice"
+          style="background-image: url(./images/acidDamage.png)"
+          class="resTypeOfDamage"
+        ></button>
+        <button
+          id="poisonChoice"
+          style="background-image: url(./images/poisonDamage.png)"
+          class="resTypeOfDamage"
+        ></button>
+        <button
+          id="radiantChoice"
+          style="background-image: url(./images/radiantDamage.png)"
+          class="resTypeOfDamage"
+        ></button>
+        <button
+          id="necroticChoice"
+          style="background-image: url(./images/necroticDamage.png)"
+          class="resTypeOfDamage"
+        ></button>
+        <button
+          id="forceChoice"
+          style="background-image: url(./images/forceDamage.png)"
+          class="resTypeOfDamage"
+        ></button>
+        <button
+          id="psychicChoice"
+          style="background-image: url(./images/psychicDamage.png)"
+          class="resTypeOfDamage"
+        ></button>
+      </div>
+      <button
+        style="
+          background-image: url(./images/plusIcon.png);
+          background-size: 100% 100%;
+          background-color: transparent;
+          border: 0;
+          outline: 0;
+          cursor: pointer;
+          aspect-ratio: 1/1;
+          width: 2vw;
+          position: relative;
+          margin-left: 28vw;
+        "
+        id="addResButton"
+      ></button>
+    </div>
+
     <script src="character.js"></script>
     <script src="tips.js"></script>
   </body>
