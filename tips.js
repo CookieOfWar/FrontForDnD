@@ -291,6 +291,9 @@ function SpellTip(e, tag, withAddButton = false, linkedListId = null) {
 			${actionIcon}
 			${filteredSpell[Object.keys(filteredSpell)[0]][0].time}
 			</span>
+			<span class="spellCell">
+			Ячейка ${Object.keys(filteredSpell)[0]}
+			</span>
 			</div>
 			${addButton}
 			</div>

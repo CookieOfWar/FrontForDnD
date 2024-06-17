@@ -8,7 +8,13 @@ function configureAdditionalPages() {
         <div id="leftSpells">
           <span class="spellLevel" id="sl0">0</span>
           <span class="spellLevel" id="sl1">1</span>
+					<div class="spellsQuantityTrackingDiv" id="SQT1">
+						<input class="maxSpellCellsInput" type="number" placeholder="Max">
+					</div>
           <span class="spellLevel" id="sl2">2</span>
+					<div class="spellsQuantityTrackingDiv" id="SQT2">
+						<input class="maxSpellCellsInput" type="number" placeholder="Max">
+					</div>
           <div id="spellsLevel0" class="spellsLevelDivs">
             <ul class="spellsList" id="spellsList0"></ul>
             <button id="addSpell0" class="addObtainedSpellButton">+</button>
