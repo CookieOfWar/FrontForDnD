@@ -19,6 +19,8 @@ var Level = 1;
 const sexChanger = document.getElementById("sexChanger");
 var Sex = "male";
 
+const addWeaponButton = document.getElementById("addToWeaponTableButton");
+
 const skillList = [...document.getElementsByClassName("skillVals")];
 /*[
   STstr,
@@ -242,4 +244,28 @@ function getSkillCharacteristic(numberInList) {
   if ([7, 8, 9, 10, 11, 12].indexOf(numberInList) !== -1) return INT;
   if ([13, 14, 15, 16, 17, 18].indexOf(numberInList) !== -1) return WIS;
   if ([19, 20, 21, 22, 23].indexOf(numberInList) !== -1) return CHA;
+}
+
+addWeaponButton.addEventListener("click", (event) => {
+  let weapon = document.createElement("tr");
+
+  weapon.innerHTML = `
+		<td><input type="text" class="weaponName" autocomplete="off"></td>
+		<td><input type="text" class="attackBonus"></td>
+		<td><input type="text" class="weaponDamage" autocomplete="off"></td>
+		<td><input type="text" class="weaponDamageType" autocomplete="off"></td>
+		<td><button class="removeWeaponButton" onclick="removeWeaponFromTable(this)">X</button></td>
+		`;
+  // console.log(document.getElementById("quickAccessWeapons").tbody);
+  document
+    .getElementById("quickAccessWeapons")
+    .getElementsByTagName("tbody")[0]
+    .appendChild(weapon);
+});
+
+function removeWeaponFromTable(weapon) {
+  document
+    .getElementById("quickAccessWeapons")
+    .getElementsByTagName("tbody")[0]
+    .removeChild(weapon.parentElement.parentElement);
 }

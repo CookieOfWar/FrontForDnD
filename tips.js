@@ -12,6 +12,7 @@ const immunityChoise = document.getElementById("immunityChoise");
 const vulnerabilityChoise = document.getElementById("vulnerabilityChoise");
 const resTypesChoises = [...document.getElementsByClassName("resTypeOfDamage")];
 const addResButton = document.getElementById("addResButton");
+const resInfoButton = document.getElementById("resistanceInfoButton");
 var resistanceType = 0;
 var resDamageType = 0;
 
@@ -21,6 +22,7 @@ var lastSpell = null;
 
 var isLevelingOpened = false;
 var isResistancesOpened = false;
+var isResInfoOpened = false;
 
 const typeColorsImages = {
   Дробящий: [
@@ -162,7 +164,7 @@ function AbilityTip(e, tag) {
   }
 }
 
-function SpellTip(e, tag) {
+function SpellTip(e, tag, withAddButton = false, linkedListId = null) {
   if (tag.innerHTML.indexOf("<") != -1) {
     tag.innerHTML = tag.innerHTML.slice(0, tag.innerHTML.indexOf("<dialog"));
     lastSpell = null;
@@ -230,10 +232,19 @@ function SpellTip(e, tag) {
           break;
       }
 
+      let addButton = "";
+      if (withAddButton) {
+        addButton = `
+				<button class="createSpellButton" onclick="createSpell('${
+          filteredSpell[Object.keys(filteredSpell)[0]][0].name
+        }', ${linkedListId})" style="margin:0; padding:0; width: 100%; height: 5%; font-size: 0.8vw;">+</button>
+				`;
+      }
+
       tag.innerHTML += `<dialog open class="spell" onclick="event.stopPropagation();" style="top:${t}vw; left:${
         (100 / document.body.clientWidth) *
         (tag.getBoundingClientRect().left + 0.01 * document.body.clientWidth)
-      }vw;">
+      }vw; z-index: 2000;">
 			<div class="spellInfo">
 			<div class="spellTop">
 			<span class="spellName">
@@ -281,6 +292,7 @@ function SpellTip(e, tag) {
 			${filteredSpell[Object.keys(filteredSpell)[0]][0].time}
 			</span>
 			</div>
+			${addButton}
 			</div>
 			</div>
 			</dialog>`;
@@ -291,7 +303,6 @@ function SpellTip(e, tag) {
         (spellDiv.getBoundingClientRect().left +
           spellDiv.offsetWidth -
           0.04 * document.body.clientWidth);
-      console.log(tag.getBoundingClientRect());
 
       if (filteredSpell[Object.keys(filteredSpell)[0]][0].damageType == "")
         tag.innerHTML = tag.innerHTML.replace(
@@ -332,6 +343,8 @@ manageResistancesButton.addEventListener("click", () => {
   if (isResistancesOpened) {
     resistancesPanel.style.display = "none";
     isResistancesOpened = false;
+    isResInfoOpened = false;
+    document.getElementById("aboutResistances").style.display = "none";
   } else {
     resistancesPanel.style.display = "block";
     isResistancesOpened = true;
@@ -421,3 +434,13 @@ function removeRes(element, pos) {
     element.parentElement.parentElement.remove();
   }
 }
+
+resInfoButton.addEventListener("click", () => {
+  if (isResInfoOpened) {
+    document.getElementById("aboutResistances").style.display = "none";
+    isResInfoOpened = false;
+  } else {
+    document.getElementById("aboutResistances").style.display = "block";
+    isResInfoOpened = true;
+  }
+});

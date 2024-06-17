@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="Sheet.css" />
     <link rel="stylesheet" href="tips.css" />
+    <link
+      rel="stylesheet"
+      href="./additionalPages/ObtainedSpellsPage/obtainedSpellsPageStyles.css"
+    />
     <title>Document</title>
   </head>
   <body>
@@ -413,6 +417,23 @@
                 </div>
               </div>
             </div>
+
+            <span style="font-size: 2vw; margin: 0.5vw 0 0.5vw 0"
+              >Быстрый доступ</span
+            >
+            <div id="quickAccessWeponsDiv">
+              <table id="quickAccessWeapons">
+                <thead>
+                  <tr>
+                    <th title="name">Название</th>
+                    <th title="attackBonus">Бонус атаки</th>
+                    <th colspan="3" title="damage">Урон/Тип</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+              <button id="addToWeaponTableButton">+</button>
+            </div>
           </div>
         </div>
       </div>
@@ -542,6 +563,7 @@
             background-color: transparent;
             border: 0;
             outline: 0;
+            cursor: pointer;
           "
         ></button>
       </div>
@@ -668,9 +690,40 @@
         "
         id="addResButton"
       ></button>
+
+      <div id="aboutResistances">
+        <span
+          ><strong>Сопротивления</strong
+          ><img src="./images/fullResistanceFrame.png" />понижают получаемый
+          урон данного типа вдвое.<br />
+          <strong>Невосприимчивость</strong
+          ><img src="./images/immunityFrame.png" />обнуляет получаемый урон
+          данного типа.<br />
+          <strong>Уязвимость</strong
+          ><img src="./images/vulnerabilityFrame.png" />повышает получаемый урон
+          данного типа вдвое.<br />
+        </span>
+      </div>
     </div>
+
+    <div id="additionalPagesButtons">
+      <button id="openSpellsButton" class="pagesButtons">
+        <span>Заклинания</span>
+      </button>
+
+      <button id="openEquipmentAndNotes" class="pagesButtons">
+        <span>Экипировка и заметки</span>
+      </button>
+    </div>
+
+    <div id="spellsPage"></div>
+    <div id="equipmentPage"></div>
+
+    <script src="./additionalPages/configureAdditionalPages.js"></script>
 
     <script src="character.js"></script>
     <script src="tips.js"></script>
+
+    <script src="./additionalPages/ObtainedSpellsPage/obtainedSpellsPage.js"></script>
   </body>
 </html>

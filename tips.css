@@ -255,3 +255,26 @@ td:has(> span[class="long"]) {
   outline: 0;
   cursor: pointer;
 }
+#aboutResistances {
+  position: fixed;
+  top: 20vw;
+  left: 52vw;
+  width: 30vw;
+  height: 17vw;
+  padding: 0.5vw 0.5vw 0.5vw 0.5vw;
+  background-color: transparent;
+  background-image: url("./images/pergament.jpg");
+  background-size: 100% 100%;
+  max-width: 55vw;
+  display: none;
+  overflow-y: auto;
+}
+#aboutResistances span {
+  font-size: 1.5vw;
+}
+#aboutResistances img {
+  width: 2vw;
+  height: 3vw;
+  /* position: relative;
+  margin-top: 1vw; */
+}
