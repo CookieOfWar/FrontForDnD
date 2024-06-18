@@ -828,3 +828,11 @@ body {
   left: 1%;
   top: 1%;
 }
+#equipmentPage {
+  position: absolute;
+  width: 45vw;
+  height: 48vw;
+  display: none;
+  left: 52%;
+  top: 4%;
+}

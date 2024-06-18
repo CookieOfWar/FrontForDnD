@@ -164,20 +164,39 @@ function AbilityTip(e, tag) {
   }
 }
 
-function SpellTip(e, tag, withAddButton = false, linkedListId = null) {
+function SpellTip(
+  e,
+  tag,
+  withAddButton = false,
+  linkedListId = null,
+  isCustomSpell = false
+) {
   if (tag.innerHTML.indexOf("<") != -1) {
     tag.innerHTML = tag.innerHTML.slice(0, tag.innerHTML.indexOf("<dialog"));
     lastSpell = null;
   } else {
-    filteredSpell = Object.keys(spells).reduce((acc, key) => {
-      let filteredSpells = spells[key].filter(
-        (spell) => spell.name.toLowerCase() === tag.innerHTML.toLowerCase()
-      );
-      if (filteredSpells.length) {
-        acc[key] = filteredSpells;
-      }
-      return acc;
-    }, {});
+    if (!isCustomSpell) {
+      filteredSpell = Object.keys(spells).reduce((acc, key) => {
+        let filteredSpells = spells[key].filter(
+          (spell) => spell.name.toLowerCase() === tag.innerHTML.toLowerCase()
+        );
+        if (filteredSpells.length) {
+          acc[key] = filteredSpells;
+        }
+        return acc;
+      }, {});
+    } else {
+      filteredSpell = Object.keys(customSpells).reduce((acc, key) => {
+        let filteredSpells = customSpells[key].filter(
+          (spell) => spell.name.toLowerCase() === tag.innerHTML.toLowerCase()
+        );
+        if (filteredSpells.length) {
+          acc[key] = filteredSpells;
+        }
+        return acc;
+      }, {});
+    }
+
     if (Object.keys(filteredSpell).length > 0) {
       let lvlShift = 0;
       while (
@@ -217,7 +236,6 @@ function SpellTip(e, tag, withAddButton = false, linkedListId = null) {
       }
 
       let actionIcon = ``;
-
       switch (filteredSpell[Object.keys(filteredSpell)[0]][0].time) {
         case "Действие":
           actionIcon = `<img src="./images/actionIcon.png" style="aspect-ratio: 1/1; width: 1.2vw">`;
